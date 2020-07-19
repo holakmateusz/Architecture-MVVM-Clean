@@ -1,4 +1,4 @@
-package com.example.mvvmcleanarchitecture.activity
+package com.example.mvvmcleanarchitecture.core.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mvvmcleanarchitecture.R
