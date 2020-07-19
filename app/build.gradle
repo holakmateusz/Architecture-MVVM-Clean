@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
 android {
@@ -40,6 +41,7 @@ dependencies {
     def lifecycleVersion = "2.2.0"
     def retrofitVersion = "2.8.1"
     def okhttpVersion = "4.6.0"
+    def roomDatabaseVersion = "2.2.5"
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
@@ -72,6 +74,9 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     implementation "com.squareup.okhttp3:okhttp:$okhttpVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
+    //room db dependencies
+    implementation "androidx.room:room-runtime:$roomDatabaseVersion"
+    kapt "androidx.room:room-compiler:$roomDatabaseVersion"
     //test dependencies
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
