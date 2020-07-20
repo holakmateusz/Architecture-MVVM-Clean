@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
+apply from: '../dependencies.gradle'
 
 android {
     compileSdkVersion 30
@@ -35,49 +36,16 @@ android {
 }
 
 dependencies {
-    def navigationVersion = "2.2.2"
-    def koinVersion = "2.1.5"
-    def coroutinesVersion = "1.3.5"
-    def lifecycleVersion = "2.2.0"
-    def retrofitVersion = "2.8.1"
-    def okhttpVersion = "4.6.0"
-    def roomDatabaseVersion = "2.2.5"
-
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    //core dependencies
-    implementation "androidx.appcompat:appcompat:1.1.0"
-    implementation "androidx.core:core-ktx:1.2.0"
-    //ui dependencies
-    implementation "androidx.constraintlayout:constraintlayout:1.1.3"
-    implementation "com.google.android.material:material:1.1.0"
-    implementation "androidx.recyclerview:recyclerview:1.1.0"
-    implementation "com.github.bumptech.glide:glide:4.11.0"
-    //navigation dependencies
-    implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
-    implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
-    //di dependencies
-    implementation "org.koin:koin-android:$koinVersion"
-    implementation "org.koin:koin-androidx-viewmodel:$koinVersion"
-    implementation "org.koin:koin-androidx-scope:$koinVersion"
-    //coroutines dependencies
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
-    //lifecycle dependencies
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
-    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion"
-    implementation "com.github.hadilq.liveevent:liveevent:1.2.0"
-    //network dependencies
-    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
-    implementation "com.squareup.okhttp3:okhttp:$okhttpVersion"
-    implementation "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
-    //room db dependencies
-    implementation "androidx.room:room-runtime:$roomDatabaseVersion"
-    kapt "androidx.room:room-compiler:$roomDatabaseVersion"
-    //test dependencies
+    implementation coreDependencies.values()
+    implementation uiDependencies.values()
+    implementation navigationDependencies.values()
+    implementation koinDependencies.values()
+    implementation coroutinesDependencies.values()
+    implementation lifecycleDependencies.values()
+    implementation networkDependencies.values()
+    implementation databaseDependencies.values()
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
