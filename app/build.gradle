@@ -46,6 +46,7 @@ dependencies {
     implementation lifecycleDependencies.values()
     implementation networkDependencies.values()
     implementation databaseDependencies.values()
+    kapt databaseAnnotationDependencies.values()
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
