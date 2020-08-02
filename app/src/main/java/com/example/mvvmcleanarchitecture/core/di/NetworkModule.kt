@@ -1,7 +1,7 @@
 package com.example.mvvmcleanarchitecture.core.di
 
 import com.example.mvvmcleanarchitecture.BuildConfig
-import com.example.mvvmcleanarchitecture.features.data.RickAndMortyApi
+import com.example.mvvmcleanarchitecture.features.data.remote.RickAndMortyApi
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

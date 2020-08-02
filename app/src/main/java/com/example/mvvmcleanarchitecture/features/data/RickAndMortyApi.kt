@@ -1,3 +1,0 @@
-package com.example.mvvmcleanarchitecture.features.data
-
-interface RickAndMortyApi

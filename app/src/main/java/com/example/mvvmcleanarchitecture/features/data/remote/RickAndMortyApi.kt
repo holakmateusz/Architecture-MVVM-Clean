@@ -1,0 +1,3 @@
+package com.example.mvvmcleanarchitecture.features.data.remote
+
+interface RickAndMortyApi
