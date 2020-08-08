@@ -57,9 +57,22 @@ ext {
 
     def roomDatabaseVersion = "2.2.5"
     databaseDependencies = [
-            androidxRoomRuntime : "androidx.room:room-runtime:" + roomDatabaseVersion,
+            androidxRoomRuntime: "androidx.room:room-runtime:" + roomDatabaseVersion,
     ]
     databaseAnnotationDependencies = [
             androidxRoomCompiler: "androidx.room:room-compiler:" + roomDatabaseVersion
+    ]
+
+    def junit5Version = "5.6.2"
+    def mockkVersion = "1.10.0"
+    def kluentVersion = "1.61"
+    testDependencies = [
+            jupiterApi   : "org.junit.jupiter:junit-jupiter-api:" + junit5Version,
+            jupiterParams: "org.junit.jupiter:junit-jupiter-params:" + junit5Version,
+            mockk        : "io.mockk:mockk:" + mockkVersion,
+            kluent       : "org.amshove.kluent:kluent:" + kluentVersion
+    ]
+    testRuntimeDependencies = [
+            jupiterRuntimeOnly: "org.junit.jupiter:junit-jupiter-engine:" + junit5Version
     ]
 }
