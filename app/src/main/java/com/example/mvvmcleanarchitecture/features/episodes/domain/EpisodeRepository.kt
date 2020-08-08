@@ -1,4 +1,4 @@
-package com.example.mvvmcleanarchitecture.features.episodes
+package com.example.mvvmcleanarchitecture.features.episodes.domain
 
 import com.example.mvvmcleanarchitecture.features.episodes.domain.model.Episode
 

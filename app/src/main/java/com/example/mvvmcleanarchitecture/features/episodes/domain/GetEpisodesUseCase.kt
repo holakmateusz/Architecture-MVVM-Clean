@@ -1,7 +1,6 @@
 package com.example.mvvmcleanarchitecture.features.episodes.domain
 
 import com.example.mvvmcleanarchitecture.core.base.UseCase
-import com.example.mvvmcleanarchitecture.features.episodes.EpisodeRepository
 import com.example.mvvmcleanarchitecture.features.episodes.domain.model.Episode
 
 class GetEpisodesUseCase(private val episodeRepository: EpisodeRepository) :

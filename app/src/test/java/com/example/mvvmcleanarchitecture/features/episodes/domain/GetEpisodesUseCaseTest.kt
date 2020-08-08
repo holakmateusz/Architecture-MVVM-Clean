@@ -1,6 +1,5 @@
 package com.example.mvvmcleanarchitecture.features.episodes.domain
 
-import com.example.mvvmcleanarchitecture.features.episodes.EpisodeRepository
 import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.GlobalScope
