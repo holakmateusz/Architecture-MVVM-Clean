@@ -1,6 +1,7 @@
 package com.example.mvvmcleanarchitecture.mock
 
 import com.example.mvvmcleanarchitecture.core.api.model.*
+import com.example.mvvmcleanarchitecture.features.characters.data.local.model.CharacterCached
 import com.example.mvvmcleanarchitecture.features.episodes.data.local.model.EpisodeCached
 import com.example.mvvmcleanarchitecture.features.locations.data.local.model.LocationCached
 import org.jetbrains.annotations.TestOnly
@@ -73,5 +74,58 @@ fun LocationCached.Companion.mock() = LocationCached(
     type = "type",
     dimension = "dimension",
     residents = emptyList(),
+    url = "url"
+)
+
+@TestOnly
+fun CharacterLocationRemote.Companion.mock() = CharacterLocationRemote(
+    name = "name",
+    url = "url"
+)
+
+@TestOnly
+fun OriginRemote.Companion.mock() = OriginRemote(
+    name = "name",
+    url = "url"
+)
+
+@TestOnly
+fun CharacterRemote.Companion.mock() = CharacterRemote(
+    id = 1,
+    episode = emptyList(),
+    gender = "gender",
+    image = "image",
+    characterLocationRemote = CharacterLocationRemote.Companion.mock(),
+    name = "name",
+    originRemote = OriginRemote.Companion.mock(),
+    species = "species",
+    status = "status",
+    type = "type",
+    url = "url",
+    created = "created"
+)
+
+@TestOnly
+fun CharactersResponse.Companion.mock() = CharactersResponse(
+    info = ResponseInfo.mock(),
+    results = listOf(
+        CharacterRemote.mock(),
+        CharacterRemote.mock(),
+        CharacterRemote.mock()
+    )
+)
+
+@TestOnly
+fun CharacterCached.Companion.mock() = CharacterCached(
+    id = 1,
+    episode = emptyList(),
+    gender = "gender",
+    image = "image",
+    name = "name",
+    origin = OriginRemote.Companion.mock().toOrigin(),
+    species = "species",
+    characterLocation = CharacterLocationRemote.Companion.mock().toCharacterLocation(),
+    status = "status",
+    type = "type",
     url = "url"
 )

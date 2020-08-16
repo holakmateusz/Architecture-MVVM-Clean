@@ -7,6 +7,8 @@ data class OriginRemote(
     @SerializedName("name") val name: String,
     @SerializedName("url") val url: String
 ) {
+    companion object
+
     fun toOrigin() = Origin(
         name = name,
         url = url

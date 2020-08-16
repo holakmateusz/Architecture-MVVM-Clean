@@ -7,6 +7,8 @@ class CharacterLocationRemote(
     @SerializedName("name") val name: String,
     @SerializedName("url") val url: String
 ) {
+    companion object
+
     fun toCharacterLocation() = CharacterLocation(
         name = name,
         url = url

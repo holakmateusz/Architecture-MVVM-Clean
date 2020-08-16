@@ -4,7 +4,6 @@ import com.example.mvvmcleanarchitecture.features.characters.domain.model.Charac
 
 data class CharacterDisplayable(
     val id: Int,
-    val created: String,
     val episode: List<String>,
     val gender: String,
     val image: String,
@@ -18,7 +17,6 @@ data class CharacterDisplayable(
 ) {
     constructor(character: Character) : this(
         id = character.id,
-        created = character.created,
         episode = character.episode,
         gender = character.gender,
         image = character.image,

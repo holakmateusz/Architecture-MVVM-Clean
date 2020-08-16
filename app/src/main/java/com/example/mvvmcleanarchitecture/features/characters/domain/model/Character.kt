@@ -2,7 +2,6 @@ package com.example.mvvmcleanarchitecture.features.characters.domain.model
 
 data class Character(
     val id: Int,
-    val created: String,
     val episode: List<String>,
     val gender: String,
     val image: String,
