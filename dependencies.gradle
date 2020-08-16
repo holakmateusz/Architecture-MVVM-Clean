@@ -58,6 +58,7 @@ ext {
     def roomDatabaseVersion = "2.2.5"
     databaseDependencies = [
             androidxRoomRuntime: "androidx.room:room-runtime:" + roomDatabaseVersion,
+            androidxRoomKtx    : "androidx.room:room-ktx:" + roomDatabaseVersion
     ]
     databaseAnnotationDependencies = [
             androidxRoomCompiler: "androidx.room:room-compiler:" + roomDatabaseVersion

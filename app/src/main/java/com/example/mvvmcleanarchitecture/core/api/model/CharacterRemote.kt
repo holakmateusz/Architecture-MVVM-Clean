@@ -1,4 +1,4 @@
-package com.example.mvvmcleanarchitecture.features.data.remote.model
+package com.example.mvvmcleanarchitecture.core.api.model
 
 import com.example.mvvmcleanarchitecture.features.characters.domain.model.Character
 import com.google.gson.annotations.SerializedName

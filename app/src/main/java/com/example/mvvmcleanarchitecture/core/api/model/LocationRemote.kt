@@ -1,4 +1,4 @@
-package com.example.mvvmcleanarchitecture.features.data.remote.model
+package com.example.mvvmcleanarchitecture.core.api.model
 
 import com.example.mvvmcleanarchitecture.features.locations.domain.model.Location
 import com.google.gson.annotations.SerializedName
