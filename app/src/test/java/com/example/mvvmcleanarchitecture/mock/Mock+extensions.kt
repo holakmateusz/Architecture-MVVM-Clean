@@ -1,9 +1,8 @@
 package com.example.mvvmcleanarchitecture.mock
 
-import com.example.mvvmcleanarchitecture.core.api.model.EpisodeRemote
-import com.example.mvvmcleanarchitecture.core.api.model.EpisodesResponse
-import com.example.mvvmcleanarchitecture.core.api.model.ResponseInfo
+import com.example.mvvmcleanarchitecture.core.api.model.*
 import com.example.mvvmcleanarchitecture.features.episodes.data.local.model.EpisodeCached
+import com.example.mvvmcleanarchitecture.features.locations.data.local.model.LocationCached
 import org.jetbrains.annotations.TestOnly
 
 @TestOnly
@@ -25,6 +24,7 @@ fun EpisodeRemote.Companion.mock() = EpisodeRemote(
     created = "created"
 )
 
+@TestOnly
 fun EpisodesResponse.Companion.mock() = EpisodesResponse(
     info = ResponseInfo.mock(),
     results = listOf(
@@ -34,6 +34,7 @@ fun EpisodesResponse.Companion.mock() = EpisodesResponse(
     )
 )
 
+@TestOnly
 fun EpisodeCached.Companion.mock() = EpisodeCached(
     id = 1,
     name = "episode name",
@@ -44,3 +45,33 @@ fun EpisodeCached.Companion.mock() = EpisodeCached(
 )
 
 
+@TestOnly
+fun LocationRemote.Companion.mock() = LocationRemote(
+    id = 1,
+    name = "location name",
+    type = "type",
+    dimension = "dimension",
+    residents = emptyList(),
+    url = "url",
+    created = "created"
+)
+
+@TestOnly
+fun LocationsResponse.Companion.mock() = LocationsResponse(
+    info = ResponseInfo.mock(),
+    results = listOf(
+        LocationRemote.mock(),
+        LocationRemote.mock(),
+        LocationRemote.mock()
+    )
+)
+
+@TestOnly
+fun LocationCached.Companion.mock() = LocationCached(
+    id = 1,
+    name = "location name",
+    type = "type",
+    dimension = "dimension",
+    residents = emptyList(),
+    url = "url"
+)

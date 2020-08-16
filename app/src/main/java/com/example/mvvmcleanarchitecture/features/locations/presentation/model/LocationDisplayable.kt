@@ -8,8 +8,7 @@ data class LocationDisplayable(
     val type: String,
     val dimension: String,
     val residents: List<String>,
-    val url: String,
-    val created: String
+    val url: String
 ) {
     constructor(location: Location) : this(
         id = location.id,
@@ -17,7 +16,6 @@ data class LocationDisplayable(
         type = location.type,
         dimension = location.dimension,
         residents = location.residents,
-        url = location.url,
-        created = location.created
+        url = location.url
     )
 }
