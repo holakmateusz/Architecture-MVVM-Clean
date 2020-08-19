@@ -1,4 +1,4 @@
-package com.example.mvvmcleanarchitecture.features.data.remote.model
+package com.example.mvvmcleanarchitecture.core.api.model
 
 import com.example.mvvmcleanarchitecture.features.characters.domain.model.CharacterLocation
 import com.google.gson.annotations.SerializedName
@@ -7,6 +7,8 @@ class CharacterLocationRemote(
     @SerializedName("name") val name: String,
     @SerializedName("url") val url: String
 ) {
+    companion object
+
     fun toCharacterLocation() = CharacterLocation(
         name = name,
         url = url

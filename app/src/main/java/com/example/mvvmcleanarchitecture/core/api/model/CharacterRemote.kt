@@ -1,4 +1,4 @@
-package com.example.mvvmcleanarchitecture.features.data.remote.model
+package com.example.mvvmcleanarchitecture.core.api.model
 
 import com.example.mvvmcleanarchitecture.features.characters.domain.model.Character
 import com.google.gson.annotations.SerializedName
@@ -17,9 +17,10 @@ data class CharacterRemote(
     @SerializedName("type") val type: String,
     @SerializedName("url") val url: String
 ) {
+    companion object
+
     fun toCharacter() = Character(
         id = id,
-        created = created,
         episode = episode,
         gender = gender,
         image = image,
