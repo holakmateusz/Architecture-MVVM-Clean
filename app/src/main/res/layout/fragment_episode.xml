@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".features.episodes.presentation.EpisodeFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/episodeContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/item_episode" />
+
+    <include
+        android:id="@+id/progressBarContainer"
+        layout="@layout/progress_bar" />
+</FrameLayout>

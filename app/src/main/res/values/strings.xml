@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MVVM Clean Architecture</string>
+    <string name="character_location_description">Last known location:</string>
+    <string name="character_origin_description">First seen in:</string>
 </resources>
