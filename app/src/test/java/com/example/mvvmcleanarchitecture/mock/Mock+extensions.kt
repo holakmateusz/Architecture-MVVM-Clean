@@ -2,7 +2,11 @@ package com.example.mvvmcleanarchitecture.mock
 
 import com.example.mvvmcleanarchitecture.core.api.model.*
 import com.example.mvvmcleanarchitecture.features.characters.data.local.model.CharacterCached
+import com.example.mvvmcleanarchitecture.features.characters.domain.model.Character
+import com.example.mvvmcleanarchitecture.features.characters.domain.model.CharacterLocation
+import com.example.mvvmcleanarchitecture.features.characters.domain.model.Origin
 import com.example.mvvmcleanarchitecture.features.episodes.data.local.model.EpisodeCached
+import com.example.mvvmcleanarchitecture.features.episodes.domain.model.Episode
 import com.example.mvvmcleanarchitecture.features.locations.data.local.model.LocationCached
 import org.jetbrains.annotations.TestOnly
 
@@ -125,6 +129,43 @@ fun CharacterCached.Companion.mock() = CharacterCached(
     origin = OriginRemote.Companion.mock().toOrigin(),
     species = "species",
     characterLocation = CharacterLocationRemote.Companion.mock().toCharacterLocation(),
+    status = "status",
+    type = "type",
+    url = "url"
+)
+
+@TestOnly
+fun Episode.Companion.mock() = Episode(
+    id = 1,
+    name = "episode name",
+    airDate = "airDate",
+    code = "code",
+    characters = emptyList(),
+    url = "url"
+)
+
+@TestOnly
+fun Origin.Companion.mock() = Origin(
+    name = "name",
+    url = "url"
+)
+
+@TestOnly
+fun CharacterLocation.Companion.mock() = CharacterLocation(
+    name = "name",
+    url = "url"
+)
+
+@TestOnly
+fun Character.Companion.mock() = Character(
+    id = 1,
+    episode = emptyList(),
+    gender = "gender",
+    image = "image",
+    origin = Origin.mock(),
+    name = "name",
+    characterLocation = CharacterLocation.mock(),
+    species = "species",
     status = "status",
     type = "type",
     url = "url"

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/FullWidthWrapHeight"
+    android:layout_margin="4dp"
+    app:cardCornerRadius="4dp"
+    app:cardElevation="6dp"
+    app:contentPadding="4dp">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        style="@style/FullWidthWrapHeight"
+        android:orientation="vertical"
+        android:padding="4dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/episodeName"
+            style="@style/DescriptionDefault"
+            android:paddingBottom="2dp"
+            android:textStyle="bold"
+            tools:text="The Ricklantis Mixup" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/episodeAirDate"
+            style="@style/DescriptionDefault"
+            android:paddingBottom="2dp"
+            tools:text="September 10, 2017" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/episodeCode"
+            style="@style/DescriptionDefault"
+            android:paddingBottom="2dp"
+            tools:text="S03E07" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</com.google.android.material.card.MaterialCardView>
