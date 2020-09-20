@@ -2,12 +2,16 @@ package com.example.mvvmcleanarchitecture.features.characters.presentation
 
 import androidx.lifecycle.*
 import com.example.mvvmcleanarchitecture.core.base.BaseViewModel
+import com.example.mvvmcleanarchitecture.core.exception.ErrorMapper
 import com.example.mvvmcleanarchitecture.features.characters.domain.GetCharactersUseCase
 import com.example.mvvmcleanarchitecture.features.characters.domain.model.Character
 import com.example.mvvmcleanarchitecture.features.characters.presentation.model.CharacterDisplayable
 import kotlinx.coroutines.Dispatchers
 
-class CharacterViewModel(private val getCharactersUseCase: GetCharactersUseCase) : BaseViewModel(),
+class CharacterViewModel(
+    private val getCharactersUseCase: GetCharactersUseCase,
+    errorMapper: ErrorMapper
+) : BaseViewModel(errorMapper),
     DefaultLifecycleObserver {
 
     private val _characters by lazy {

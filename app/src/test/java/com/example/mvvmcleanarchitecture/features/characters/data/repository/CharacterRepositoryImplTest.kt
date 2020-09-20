@@ -2,6 +2,7 @@ package com.example.mvvmcleanarchitecture.features.characters.data.repository
 
 import com.example.mvvmcleanarchitecture.core.api.RickAndMortyApi
 import com.example.mvvmcleanarchitecture.core.api.model.CharactersResponse
+import com.example.mvvmcleanarchitecture.core.exception.ErrorWrapper
 import com.example.mvvmcleanarchitecture.core.network.NetworkStateProvider
 import com.example.mvvmcleanarchitecture.features.characters.data.local.CharacterDao
 import com.example.mvvmcleanarchitecture.features.characters.data.local.model.CharacterCached
@@ -25,8 +26,9 @@ internal class CharacterRepositoryImplTest {
         val networkStateProvider = mockk<NetworkStateProvider> {
             every { isNetworkAvailable() } returns true
         }
+        val wrapper = mockk<ErrorWrapper>(relaxed = true)
         val repository: CharacterRepository =
-            CharacterRepositoryImpl(api, characterDao, networkStateProvider)
+            CharacterRepositoryImpl(api, characterDao, networkStateProvider, wrapper)
 
         //when
         runBlocking { repository.getCharacters() }
@@ -45,8 +47,9 @@ internal class CharacterRepositoryImplTest {
         val networkStateProvider = mockk<NetworkStateProvider> {
             every { isNetworkAvailable() } returns true
         }
+        val wrapper = mockk<ErrorWrapper>(relaxed = true)
         val repository: CharacterRepository =
-            CharacterRepositoryImpl(api, characterDao, networkStateProvider)
+            CharacterRepositoryImpl(api, characterDao, networkStateProvider, wrapper)
 
         //when
         runBlocking { repository.getCharacters() }
@@ -68,8 +71,9 @@ internal class CharacterRepositoryImplTest {
         val networkStateProvider = mockk<NetworkStateProvider> {
             every { isNetworkAvailable() } returns false
         }
+        val wrapper = mockk<ErrorWrapper>(relaxed = true)
         val repository: CharacterRepository =
-            CharacterRepositoryImpl(api, characterDao, networkStateProvider)
+            CharacterRepositoryImpl(api, characterDao, networkStateProvider, wrapper)
 
         //when
         runBlocking { repository.getCharacters() }
