@@ -2,11 +2,15 @@ package com.example.mvvmcleanarchitecture.features.episodes.presentation
 
 import androidx.lifecycle.*
 import com.example.mvvmcleanarchitecture.core.base.BaseViewModel
+import com.example.mvvmcleanarchitecture.core.exception.ErrorMapper
 import com.example.mvvmcleanarchitecture.features.episodes.domain.GetEpisodesUseCase
 import com.example.mvvmcleanarchitecture.features.episodes.domain.model.Episode
 import com.example.mvvmcleanarchitecture.features.episodes.presentation.model.EpisodeDisplayable
 
-class EpisodeViewModel(private val getEpisodesUseCase: GetEpisodesUseCase) : BaseViewModel(),
+class EpisodeViewModel(
+    private val getEpisodesUseCase: GetEpisodesUseCase,
+    errorMapper: ErrorMapper
+) : BaseViewModel(errorMapper),
     DefaultLifecycleObserver {
 
     private val _episodes by lazy {

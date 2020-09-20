@@ -1,6 +1,8 @@
 package com.example.mvvmcleanarchitecture.features.locations.data.repository
 
 import com.example.mvvmcleanarchitecture.core.api.RickAndMortyApi
+import com.example.mvvmcleanarchitecture.core.exception.ErrorWrapper
+import com.example.mvvmcleanarchitecture.core.exception.callOrThrow
 import com.example.mvvmcleanarchitecture.core.network.NetworkStateProvider
 import com.example.mvvmcleanarchitecture.features.locations.data.local.LocationDao
 import com.example.mvvmcleanarchitecture.features.locations.data.local.model.LocationCached
@@ -10,11 +12,14 @@ import com.example.mvvmcleanarchitecture.features.locations.domain.model.Locatio
 class LocationRepositoryImpl(
     private val rickAndMortyApi: RickAndMortyApi,
     private val locationDao: LocationDao,
-    private val networkStateProvider: NetworkStateProvider
+    private val networkStateProvider: NetworkStateProvider,
+    private val errorWrapper: ErrorWrapper
 ) : LocationRepository {
     override suspend fun getLocations(): List<Location> {
         return if (networkStateProvider.isNetworkAvailable()) {
-            getLocationsFromRemote().also { saveLocationsToLocal(it) }
+            callOrThrow(errorWrapper) {
+                getLocationsFromRemote()
+            }.also { saveLocationsToLocal(it) }
         } else {
             getLocationsFromLocal()
         }

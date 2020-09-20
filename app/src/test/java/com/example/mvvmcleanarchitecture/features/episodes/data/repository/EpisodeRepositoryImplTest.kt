@@ -2,6 +2,7 @@ package com.example.mvvmcleanarchitecture.features.episodes.data.repository
 
 import com.example.mvvmcleanarchitecture.core.api.RickAndMortyApi
 import com.example.mvvmcleanarchitecture.core.api.model.EpisodesResponse
+import com.example.mvvmcleanarchitecture.core.exception.ErrorWrapper
 import com.example.mvvmcleanarchitecture.core.network.NetworkStateProvider
 import com.example.mvvmcleanarchitecture.features.episodes.data.local.EpisodeDao
 import com.example.mvvmcleanarchitecture.features.episodes.data.local.model.EpisodeCached
@@ -27,8 +28,9 @@ internal class EpisodeRepositoryImplTest {
         val networkStateProvider = mockk<NetworkStateProvider> {
             every { isNetworkAvailable() } returns true
         }
+        val wrapper = mockk<ErrorWrapper>(relaxed = true)
         val repository: EpisodeRepository =
-            EpisodeRepositoryImpl(api, episodeDao, networkStateProvider)
+            EpisodeRepositoryImpl(api, episodeDao, networkStateProvider, wrapper)
 
         //when
         runBlocking { repository.getEpisodes() }
@@ -47,8 +49,9 @@ internal class EpisodeRepositoryImplTest {
         val networkStateProvider = mockk<NetworkStateProvider> {
             every { isNetworkAvailable() } returns true
         }
+        val wrapper = mockk<ErrorWrapper>(relaxed = true)
         val repository: EpisodeRepository =
-            EpisodeRepositoryImpl(api, episodeDao, networkStateProvider)
+            EpisodeRepositoryImpl(api, episodeDao, networkStateProvider, wrapper)
 
         //when
         runBlocking { repository.getEpisodes() }
@@ -67,8 +70,9 @@ internal class EpisodeRepositoryImplTest {
         val networkStateProvider = mockk<NetworkStateProvider> {
             every { isNetworkAvailable() } returns false
         }
+        val wrapper = mockk<ErrorWrapper>(relaxed = true)
         val repository: EpisodeRepository =
-            EpisodeRepositoryImpl(api, episodeDao, networkStateProvider)
+            EpisodeRepositoryImpl(api, episodeDao, networkStateProvider, wrapper)
 
         //when
         runBlocking { repository.getEpisodes() }
