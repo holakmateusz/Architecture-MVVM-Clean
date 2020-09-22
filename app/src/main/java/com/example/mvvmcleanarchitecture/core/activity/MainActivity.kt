@@ -2,23 +2,27 @@ package com.example.mvvmcleanarchitecture.core.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.example.mvvmcleanarchitecture.R
-import com.example.mvvmcleanarchitecture.features.characters.presentation.CharacterFragment
-import com.example.mvvmcleanarchitecture.features.episodes.presentation.EpisodeFragment
-import com.example.mvvmcleanarchitecture.features.locations.presentation.LocationFragment
-import org.koin.android.ext.android.inject
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
-    private val episodeFragment: EpisodeFragment by inject()
-    private val characterFragment: CharacterFragment by inject()
-    private val locationFragment: LocationFragment by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (savedInstanceState == null) {
-            //TODO For testing app only, remove it after navigation added
-            supportFragmentManager.beginTransaction().add(R.id.container, characterFragment)
-                .commit()
-        }
+        val navView: BottomNavigationView = findViewById(R.id.nav_view)
+        val navController = findNavController(R.id.nav_host_fragment)
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.episodes_screen,
+                R.id.characters_screen,
+                R.id.locations_screen
+            )
+        )
+        setupActionBarWithNavController(navController, appBarConfiguration)
+        navView.setupWithNavController(navController)
     }
 }

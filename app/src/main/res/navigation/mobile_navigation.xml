@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/characters_screen">
+
+    <fragment
+        android:id="@+id/episodes_screen"
+        android:name="com.example.mvvmcleanarchitecture.features.episodes.presentation.EpisodeFragment"
+        android:label="@string/title_episodes"
+        tools:layout="@layout/fragment_episode" />
+
+    <fragment
+        android:id="@+id/characters_screen"
+        android:name="com.example.mvvmcleanarchitecture.features.characters.presentation.CharacterFragment"
+        android:label="@string/title_characters"
+        tools:layout="@layout/fragment_character" />
+
+    <fragment
+        android:id="@+id/locations_screen"
+        android:name="com.example.mvvmcleanarchitecture.features.locations.presentation.LocationFragment"
+        android:label="@string/title_locations"
+        tools:layout="@layout/fragment_location" />
+</navigation>
