@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/ParentWidthWrapHeight"
+    android:layout_margin="4dp"
+    app:cardCornerRadius="4dp"
+    app:cardElevation="6dp"
+    app:contentPadding="4dp">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        style="@style/ParentWidthWrapHeight"
+        android:orientation="vertical"
+        android:padding="4dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/locationName"
+            style="@style/DescriptionDefault"
+            android:paddingBottom="2dp"
+            android:textStyle="bold"
+            tools:text="Citadel of Ricks" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/locationType"
+            style="@style/DescriptionDefault"
+            android:paddingBottom="2dp"
+            tools:text="Space station" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</com.google.android.material.card.MaterialCardView>

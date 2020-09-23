@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="electric_violet">#6200EE</color>
+    <color name="blue_gem">#3700B3</color>
+    <color name="robins_egg_blue">#03DAC5</color>
+    <color name="silver_chalice">#A9A9A9</color>
+    <color name="dove_gray">#696969</color>
 </resources>
