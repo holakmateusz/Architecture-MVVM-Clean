@@ -2,11 +2,15 @@ package com.example.mvvmcleanarchitecture.features.locations.presentation
 
 import androidx.lifecycle.*
 import com.example.mvvmcleanarchitecture.core.base.BaseViewModel
+import com.example.mvvmcleanarchitecture.core.exception.ErrorMapper
 import com.example.mvvmcleanarchitecture.features.locations.domain.GetLocationsUseCase
 import com.example.mvvmcleanarchitecture.features.locations.domain.model.Location
 import com.example.mvvmcleanarchitecture.features.locations.presentation.model.LocationDisplayable
 
-class LocationViewModel(private val getLocationsUseCase: GetLocationsUseCase) : BaseViewModel(),
+class LocationViewModel(
+    private val getLocationsUseCase: GetLocationsUseCase,
+    errorMapper: ErrorMapper
+) : BaseViewModel(errorMapper),
     DefaultLifecycleObserver {
     private val _locations by lazy {
         MutableLiveData<List<Location>>().also {

@@ -2,6 +2,7 @@ package com.example.mvvmcleanarchitecture.features.locations.data.repository
 
 import com.example.mvvmcleanarchitecture.core.api.RickAndMortyApi
 import com.example.mvvmcleanarchitecture.core.api.model.LocationsResponse
+import com.example.mvvmcleanarchitecture.core.exception.ErrorWrapper
 import com.example.mvvmcleanarchitecture.core.network.NetworkStateProvider
 import com.example.mvvmcleanarchitecture.features.locations.data.local.LocationDao
 import com.example.mvvmcleanarchitecture.features.locations.data.local.model.LocationCached
@@ -25,8 +26,9 @@ internal class LocationRepositoryImplTest {
         val networkStateProvider = mockk<NetworkStateProvider> {
             every { isNetworkAvailable() } returns true
         }
+        val wrapper = mockk<ErrorWrapper>(relaxed = true)
         val repository: LocationRepository =
-            LocationRepositoryImpl(api, locationDao, networkStateProvider)
+            LocationRepositoryImpl(api, locationDao, networkStateProvider, wrapper)
 
         //when
         runBlocking { repository.getLocations() }
@@ -45,8 +47,9 @@ internal class LocationRepositoryImplTest {
         val networkStateProvider = mockk<NetworkStateProvider> {
             every { isNetworkAvailable() } returns true
         }
+        val wrapper = mockk<ErrorWrapper>(relaxed = true)
         val repository: LocationRepository =
-            LocationRepositoryImpl(api, locationDao, networkStateProvider)
+            LocationRepositoryImpl(api, locationDao, networkStateProvider, wrapper)
 
         //when
         runBlocking { repository.getLocations() }
@@ -65,8 +68,9 @@ internal class LocationRepositoryImplTest {
         val networkStateProvider = mockk<NetworkStateProvider> {
             every { isNetworkAvailable() } returns false
         }
+        val wrapper = mockk<ErrorWrapper>(relaxed = true)
         val repository: LocationRepository =
-            LocationRepositoryImpl(api, locationDao, networkStateProvider)
+            LocationRepositoryImpl(api, locationDao, networkStateProvider, wrapper)
 
         //when
         runBlocking { repository.getLocations() }

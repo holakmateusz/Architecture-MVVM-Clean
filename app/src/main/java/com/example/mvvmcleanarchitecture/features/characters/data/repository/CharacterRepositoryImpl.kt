@@ -1,6 +1,8 @@
 package com.example.mvvmcleanarchitecture.features.characters.data.repository
 
 import com.example.mvvmcleanarchitecture.core.api.RickAndMortyApi
+import com.example.mvvmcleanarchitecture.core.exception.ErrorWrapper
+import com.example.mvvmcleanarchitecture.core.exception.callOrThrow
 import com.example.mvvmcleanarchitecture.core.network.NetworkStateProvider
 import com.example.mvvmcleanarchitecture.features.characters.data.local.CharacterDao
 import com.example.mvvmcleanarchitecture.features.characters.data.local.model.CharacterCached
@@ -10,11 +12,14 @@ import com.example.mvvmcleanarchitecture.features.characters.domain.model.Charac
 class CharacterRepositoryImpl(
     private val rickAndMortyApi: RickAndMortyApi,
     private val characterDao: CharacterDao,
-    private val networkStateProvider: NetworkStateProvider
+    private val networkStateProvider: NetworkStateProvider,
+    private val errorWrapper: ErrorWrapper
 ) : CharacterRepository {
     override suspend fun getCharacters(): List<Character> {
         return if (networkStateProvider.isNetworkAvailable()) {
-            getCharactersFromRemote().also { saveCharactersToLocal(it) }
+            callOrThrow(errorWrapper) {
+                getCharactersFromRemote()
+            }.also { saveCharactersToLocal(it) }
         } else {
             getCharactersFromLocal()
         }

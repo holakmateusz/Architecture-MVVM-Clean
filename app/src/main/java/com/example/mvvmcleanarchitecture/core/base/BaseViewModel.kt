@@ -3,9 +3,10 @@ package com.example.mvvmcleanarchitecture.core.base
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.mvvmcleanarchitecture.core.exception.ErrorMapper
 import com.hadilq.liveevent.LiveEvent
 
-open class BaseViewModel : ViewModel() {
+open class BaseViewModel(private val errorMapper: ErrorMapper) : ViewModel() {
     private val _message by lazy { LiveEvent<String>() }
     val message: LiveData<String> by lazy { _message }
 
@@ -25,6 +26,7 @@ open class BaseViewModel : ViewModel() {
     }
 
     protected fun handleFailure(throwable: Throwable) {
-        throwable.message?.let { showMessage(it) }
+        val errorMessage = errorMapper.map(throwable)
+        showMessage(errorMessage)
     }
 }
