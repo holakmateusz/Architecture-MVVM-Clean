@@ -1,7 +1,10 @@
-package com.example.mvvmcleanarchitecture.features.episodes.presentation.model
+package com.example.mvvmcleanarchitecture.features.episodes.all.presentation.model
 
+import android.os.Parcelable
 import com.example.mvvmcleanarchitecture.features.episodes.domain.model.Episode
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class EpisodeDisplayable(
     val id: Int,
     val name: String,
@@ -9,7 +12,7 @@ data class EpisodeDisplayable(
     val characters: List<String>,
     val code: String,
     val url: String
-) {
+) : Parcelable {
     constructor(episode: Episode) : this(
         id = episode.id,
         name = episode.name,
@@ -18,4 +21,6 @@ data class EpisodeDisplayable(
         url = episode.url,
         code = episode.code
     )
+
+    companion object
 }

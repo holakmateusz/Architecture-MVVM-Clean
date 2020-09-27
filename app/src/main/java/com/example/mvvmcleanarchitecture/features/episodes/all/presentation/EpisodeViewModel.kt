@@ -1,14 +1,16 @@
-package com.example.mvvmcleanarchitecture.features.episodes.presentation
+package com.example.mvvmcleanarchitecture.features.episodes.all.presentation
 
 import androidx.lifecycle.*
 import com.example.mvvmcleanarchitecture.core.base.BaseViewModel
 import com.example.mvvmcleanarchitecture.core.exception.ErrorMapper
+import com.example.mvvmcleanarchitecture.features.episodes.all.presentation.model.EpisodeDisplayable
 import com.example.mvvmcleanarchitecture.features.episodes.domain.GetEpisodesUseCase
 import com.example.mvvmcleanarchitecture.features.episodes.domain.model.Episode
-import com.example.mvvmcleanarchitecture.features.episodes.presentation.model.EpisodeDisplayable
+import com.example.mvvmcleanarchitecture.features.episodes.navigation.EpisodeNavigator
 
 class EpisodeViewModel(
     private val getEpisodesUseCase: GetEpisodesUseCase,
+    private val episodeNavigator: EpisodeNavigator,
     errorMapper: ErrorMapper
 ) : BaseViewModel(errorMapper),
     DefaultLifecycleObserver {
@@ -35,5 +37,9 @@ class EpisodeViewModel(
             result.onSuccess { episodesLiveData.value = it }
             result.onFailure { handleFailure(it) }
         }
+    }
+
+    internal fun onEpisodeClick(episode: EpisodeDisplayable) {
+        episodeNavigator.openEpisodeDetailsScreen(episode)
     }
 }

@@ -7,9 +7,14 @@
 
     <fragment
         android:id="@+id/episodes_screen"
-        android:name="com.example.mvvmcleanarchitecture.features.episodes.presentation.EpisodeFragment"
+        android:name="com.example.mvvmcleanarchitecture.features.episodes.all.presentation.EpisodeFragment"
         android:label="@string/title_episodes"
-        tools:layout="@layout/fragment_episode" />
+        tools:layout="@layout/fragment_episode">
+        <action
+            android:id="@+id/action_episodes_screen_to_episode_detals_screen"
+            app:destination="@id/episodeDetailsFragment"
+            app:popUpTo="@id/episodes_screen" />
+    </fragment>
 
     <fragment
         android:id="@+id/characters_screen"
@@ -22,4 +27,8 @@
         android:name="com.example.mvvmcleanarchitecture.features.locations.presentation.LocationFragment"
         android:label="@string/title_locations"
         tools:layout="@layout/fragment_location" />
+    <fragment
+        android:id="@+id/episodeDetailsFragment"
+        android:name="com.example.mvvmcleanarchitecture.features.episodes.details.presentation.EpisodeDetailsFragment"
+        android:label="@string/title_episode_details" />
 </navigation>

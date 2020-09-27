@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/episode_details_row_container"
+    style="@style/ParentWidthWrapHeight"
+    android:paddingHorizontal="10dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="5dp">
+
+    <ImageView
+        android:id="@+id/episodeDetailsImage"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:tint="@color/blue_gem"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/ic_episode" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/episodeDetailsDescription"
+        style="@style/ConstraintWidthWrapHeight"
+        android:layout_marginHorizontal="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/episodeDetailsImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/episodeDetailsImage"
+        app:layout_constraintTop_toTopOf="@id/episodeDetailsImage"
+        tools:text="@string/title_episode_example" />
+</androidx.constraintlayout.widget.ConstraintLayout>

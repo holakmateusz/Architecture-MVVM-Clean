@@ -5,6 +5,7 @@ import com.example.mvvmcleanarchitecture.features.characters.data.local.model.Ch
 import com.example.mvvmcleanarchitecture.features.characters.domain.model.Character
 import com.example.mvvmcleanarchitecture.features.characters.domain.model.CharacterLocation
 import com.example.mvvmcleanarchitecture.features.characters.domain.model.Origin
+import com.example.mvvmcleanarchitecture.features.episodes.all.presentation.model.EpisodeDisplayable
 import com.example.mvvmcleanarchitecture.features.episodes.data.local.model.EpisodeCached
 import com.example.mvvmcleanarchitecture.features.episodes.domain.model.Episode
 import com.example.mvvmcleanarchitecture.features.locations.data.local.model.LocationCached
@@ -179,5 +180,15 @@ fun Location.Companion.mock() = Location(
     type = "type",
     dimension = "dimension",
     residents = emptyList(),
+    url = "url"
+)
+
+@TestOnly
+fun EpisodeDisplayable.Companion.mock() = EpisodeDisplayable(
+    id = 1,
+    name = "episode name",
+    airDate = "airDate",
+    code = "code",
+    characters = emptyList(),
     url = "url"
 )

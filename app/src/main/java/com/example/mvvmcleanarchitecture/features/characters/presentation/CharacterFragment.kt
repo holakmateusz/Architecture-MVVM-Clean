@@ -3,7 +3,6 @@ package com.example.mvvmcleanarchitecture.features.characters.presentation
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.observe
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mvvmcleanarchitecture.R
 import com.example.mvvmcleanarchitecture.core.base.BaseFragment
 import com.example.mvvmcleanarchitecture.databinding.FragmentCharacterBinding
@@ -14,7 +13,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class CharacterFragment :
     BaseFragment<CharacterViewModel, FragmentCharacterBinding>(R.layout.fragment_character) {
     override val viewModel: CharacterViewModel by viewModel()
-    private val layoutManager: LinearLayoutManager by inject()
     private val adapter: CharacterAdapter by inject()
     override var binding: FragmentCharacterBinding? = null
 
@@ -41,7 +39,6 @@ class CharacterFragment :
     }
 
     private fun initRecyclerView() {
-        binding?.characterContainer?.layoutManager = layoutManager
         binding?.characterContainer?.adapter = adapter
     }
 

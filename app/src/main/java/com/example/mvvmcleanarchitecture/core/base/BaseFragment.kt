@@ -25,7 +25,9 @@ abstract class BaseFragment<T : BaseViewModel, K : ViewBinding>(@LayoutRes conte
         binding = null
     }
 
-    abstract fun initViews()
+    open fun initViews() {
+
+    }
 
     open fun initObservers() {
         observeUiState()
@@ -60,6 +62,11 @@ abstract class BaseFragment<T : BaseViewModel, K : ViewBinding>(@LayoutRes conte
         }
     }
 
-    abstract fun onIdleState()
-    abstract fun onPendingState()
+    open fun onIdleState() {
+
+    }
+
+    open fun onPendingState() {
+
+    }
 }

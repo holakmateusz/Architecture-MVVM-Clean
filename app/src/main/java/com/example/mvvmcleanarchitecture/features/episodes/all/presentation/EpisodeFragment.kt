@@ -1,20 +1,19 @@
-package com.example.mvvmcleanarchitecture.features.episodes.presentation
+package com.example.mvvmcleanarchitecture.features.episodes.all.presentation
 
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.observe
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mvvmcleanarchitecture.R
 import com.example.mvvmcleanarchitecture.core.base.BaseFragment
 import com.example.mvvmcleanarchitecture.databinding.FragmentEpisodeBinding
-import com.example.mvvmcleanarchitecture.features.episodes.presentation.model.EpisodeDisplayable
+import com.example.mvvmcleanarchitecture.features.episodes.all.presentation.model.EpisodeDisplayable
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class EpisodeFragment :
-    BaseFragment<EpisodeViewModel, FragmentEpisodeBinding>(R.layout.fragment_episode) {
+    BaseFragment<EpisodeViewModel, FragmentEpisodeBinding>(R.layout.fragment_episode),
+    EpisodeAdapter.OnEpisodeListener {
     override val viewModel: EpisodeViewModel by viewModel()
-    private val layoutManager: LinearLayoutManager by inject()
     private val adapter: EpisodeAdapter by inject()
     override var binding: FragmentEpisodeBinding? = null
 
@@ -41,7 +40,7 @@ class EpisodeFragment :
     }
 
     private fun initRecyclerView() {
-        binding?.episodeContainer?.layoutManager = layoutManager
+        adapter.onEpisodeListener = this@EpisodeFragment
         binding?.episodeContainer?.adapter = adapter
     }
 
@@ -61,5 +60,9 @@ class EpisodeFragment :
 
     private fun showEpisodes(episodes: List<EpisodeDisplayable>) {
         adapter.setItems(episodes)
+    }
+
+    override fun onClick(episode: EpisodeDisplayable) {
+        viewModel.onEpisodeClick(episode)
     }
 }

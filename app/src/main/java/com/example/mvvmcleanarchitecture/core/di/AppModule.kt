@@ -3,6 +3,8 @@ package com.example.mvvmcleanarchitecture.core.di
 import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
+import androidx.navigation.NavOptions
+import androidx.navigation.navOptions
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -29,7 +31,8 @@ val appModule = module {
     factory { provideErrorWrapper() }
     factory { provideErrorMapper(androidContext()) }
     single(createdAtStart = true) { provideActivityProvider(androidApplication()) }
-    factory { provideFragmentNavigator(get()) }
+    factory { provideDefaultNavOptions() }
+    factory { provideFragmentNavigator(get(), get()) }
 }
 
 private fun provideLinearLayoutManager(androidContext: Context): LinearLayoutManager {
@@ -62,10 +65,21 @@ private fun provideErrorMapper(androidContext: Context): ErrorMapper {
 
 private fun provideActivityProvider(application: Application) = ActivityProvider(application)
 
-private fun provideFragmentNavigator(activityProvider: ActivityProvider): FragmentNavigator {
+private fun provideDefaultNavOptions(): NavOptions = navOptions {
+    anim { enter = R.anim.fragment_fade_enter }
+    anim { exit = R.anim.fragment_fade_exit }
+    anim { popEnter = R.anim.fragment_close_enter }
+    anim { popExit = R.anim.fragment_close_exit }
+}
+
+private fun provideFragmentNavigator(
+    activityProvider: ActivityProvider,
+    navOptions: NavOptions
+): FragmentNavigator {
     return FragmentNavigatorImpl(
         activityProvider = activityProvider,
         navHostFragmentRes = R.id.nav_host_fragment,
-        homeDestinationRes = R.id.characters_screen
+        homeDestinationRes = R.id.characters_screen,
+        defaultNavOptions = navOptions
     )
 }

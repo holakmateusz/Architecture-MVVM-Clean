@@ -1,11 +1,15 @@
-package com.example.mvvmcleanarchitecture.features.episodes.presentation
+package com.example.mvvmcleanarchitecture.features.episodes.all.presentation
 
 import androidx.lifecycle.Observer
 import androidx.lifecycle.viewModelScope
 import com.example.mvvmcleanarchitecture.core.base.UiState
 import com.example.mvvmcleanarchitecture.core.exception.ErrorMapper
+import com.example.mvvmcleanarchitecture.core.navigation.FragmentNavigator
+import com.example.mvvmcleanarchitecture.features.episodes.all.presentation.model.EpisodeDisplayable
 import com.example.mvvmcleanarchitecture.features.episodes.domain.GetEpisodesUseCase
 import com.example.mvvmcleanarchitecture.features.episodes.domain.model.Episode
+import com.example.mvvmcleanarchitecture.features.episodes.navigation.EpisodeNavigator
+import com.example.mvvmcleanarchitecture.features.episodes.navigation.EpisodeNavigatorImpl
 import com.example.mvvmcleanarchitecture.mock.mock
 import com.example.mvvmcleanarchitecture.utils.ViewModelTest
 import com.example.mvvmcleanarchitecture.utils.getOrAwaitValue
@@ -19,11 +23,31 @@ import org.junit.jupiter.api.Test
 internal class EpisodeViewModelTest : ViewModelTest() {
 
     @Test
+    fun `When episode is clicked THEN open episode details screen`() {
+        //given
+        val useCase = mockk<GetEpisodesUseCase>(relaxed = true)
+        val errorMapper = mockk<ErrorMapper>(relaxed = true)
+        val fragmentNavigator = mockk<FragmentNavigator>(relaxed = true)
+        val episodeNavigator: EpisodeNavigator = EpisodeNavigatorImpl(fragmentNavigator)
+        val viewModel = EpisodeViewModel(useCase, episodeNavigator, errorMapper)
+        val episode = EpisodeDisplayable.mock()
+
+        //when
+        viewModel.onEpisodeClick(episode)
+
+        //then
+        verify { episodeNavigator.openEpisodeDetailsScreen(episode) }
+    }
+
+
+    @Test
     fun `When episode live data is observed THEN set pending state`() {
         //given
         val useCase = mockk<GetEpisodesUseCase>(relaxed = true)
         val errorMapper = mockk<ErrorMapper>(relaxed = true)
-        val viewModel = EpisodeViewModel(useCase, errorMapper)
+        val fragmentNavigator = mockk<FragmentNavigator>(relaxed = true)
+        val episodeNavigator: EpisodeNavigator = EpisodeNavigatorImpl(fragmentNavigator)
+        val viewModel = EpisodeViewModel(useCase, episodeNavigator, errorMapper)
 
         //when
         viewModel.episodes.observeForTesting()
@@ -37,7 +61,9 @@ internal class EpisodeViewModelTest : ViewModelTest() {
         //given
         val useCase = mockk<GetEpisodesUseCase>(relaxed = true)
         val errorMapper = mockk<ErrorMapper>(relaxed = true)
-        val viewModel = EpisodeViewModel(useCase, errorMapper)
+        val fragmentNavigator = mockk<FragmentNavigator>(relaxed = true)
+        val episodeNavigator: EpisodeNavigator = EpisodeNavigatorImpl(fragmentNavigator)
+        val viewModel = EpisodeViewModel(useCase, episodeNavigator, errorMapper)
 
         //when
         viewModel.episodes.observeForTesting()
@@ -56,7 +82,9 @@ internal class EpisodeViewModelTest : ViewModelTest() {
             }
         }
         val errorMapper = mockk<ErrorMapper>(relaxed = true)
-        val viewModel = EpisodeViewModel(useCase, errorMapper)
+        val fragmentNavigator = mockk<FragmentNavigator>(relaxed = true)
+        val episodeNavigator: EpisodeNavigator = EpisodeNavigatorImpl(fragmentNavigator)
+        val viewModel = EpisodeViewModel(useCase, episodeNavigator, errorMapper)
 
         //when
         viewModel.episodes.observeForTesting()
@@ -84,7 +112,9 @@ internal class EpisodeViewModelTest : ViewModelTest() {
         val errorMapper = mockk<ErrorMapper> {
             every { map(any()) } returns throwable.message!!
         }
-        val viewModel = EpisodeViewModel(useCase, errorMapper)
+        val fragmentNavigator = mockk<FragmentNavigator>(relaxed = true)
+        val episodeNavigator: EpisodeNavigator = EpisodeNavigatorImpl(fragmentNavigator)
+        val viewModel = EpisodeViewModel(useCase, episodeNavigator, errorMapper)
 
         //when
         viewModel.message.observeForever(observer)
