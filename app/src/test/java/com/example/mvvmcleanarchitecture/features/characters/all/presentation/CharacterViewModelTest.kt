@@ -1,11 +1,15 @@
-package com.example.mvvmcleanarchitecture.features.characters.presentation
+package com.example.mvvmcleanarchitecture.features.characters.all.presentation
 
 import androidx.lifecycle.Observer
 import androidx.lifecycle.viewModelScope
 import com.example.mvvmcleanarchitecture.core.base.UiState
 import com.example.mvvmcleanarchitecture.core.exception.ErrorMapper
+import com.example.mvvmcleanarchitecture.core.navigation.FragmentNavigator
+import com.example.mvvmcleanarchitecture.features.characters.all.presentation.model.CharacterDisplayable
 import com.example.mvvmcleanarchitecture.features.characters.domain.GetCharactersUseCase
 import com.example.mvvmcleanarchitecture.features.characters.domain.model.Character
+import com.example.mvvmcleanarchitecture.features.characters.navigation.CharacterNavigator
+import com.example.mvvmcleanarchitecture.features.characters.navigation.CharacterNavigatorImpl
 import com.example.mvvmcleanarchitecture.mock.mock
 import com.example.mvvmcleanarchitecture.utils.ViewModelTest
 import com.example.mvvmcleanarchitecture.utils.getOrAwaitValue
@@ -17,12 +21,32 @@ import org.amshove.kluent.shouldBe
 import org.junit.jupiter.api.Test
 
 internal class CharacterViewModelTest : ViewModelTest() {
+
+    @Test
+    fun `When location is clicked THEN open location details screen`() {
+        //given
+        val useCase = mockk<GetCharactersUseCase>(relaxed = true)
+        val errorMapper = mockk<ErrorMapper>(relaxed = true)
+        val fragmentNavigator = mockk<FragmentNavigator>(relaxed = true)
+        val characterNavigator: CharacterNavigator = CharacterNavigatorImpl(fragmentNavigator)
+        val viewModel = CharacterViewModel(useCase, characterNavigator, errorMapper)
+        val character = CharacterDisplayable.mock()
+
+        //when
+        viewModel.onCharacterClick(character)
+
+        //then
+        verify { characterNavigator.openCharacterDetailsScreen(character) }
+    }
+
     @Test
     fun `When character live data is observed THEN set pending state`() {
         //given
         val useCase = mockk<GetCharactersUseCase>(relaxed = true)
         val errorMapper = mockk<ErrorMapper>(relaxed = true)
-        val viewModel = CharacterViewModel(useCase, errorMapper)
+        val fragmentNavigator = mockk<FragmentNavigator>(relaxed = true)
+        val characterNavigator: CharacterNavigator = CharacterNavigatorImpl(fragmentNavigator)
+        val viewModel = CharacterViewModel(useCase, characterNavigator, errorMapper)
 
         //when
         viewModel.characters.observeForTesting()
@@ -36,7 +60,9 @@ internal class CharacterViewModelTest : ViewModelTest() {
         //given
         val useCase = mockk<GetCharactersUseCase>(relaxed = true)
         val errorMapper = mockk<ErrorMapper>(relaxed = true)
-        val viewModel = CharacterViewModel(useCase, errorMapper)
+        val fragmentNavigator = mockk<FragmentNavigator>(relaxed = true)
+        val characterNavigator: CharacterNavigator = CharacterNavigatorImpl(fragmentNavigator)
+        val viewModel = CharacterViewModel(useCase, characterNavigator, errorMapper)
 
         //when
         viewModel.characters.observeForTesting()
@@ -55,7 +81,9 @@ internal class CharacterViewModelTest : ViewModelTest() {
             }
         }
         val errorMapper = mockk<ErrorMapper>(relaxed = true)
-        val viewModel = CharacterViewModel(useCase, errorMapper)
+        val fragmentNavigator = mockk<FragmentNavigator>(relaxed = true)
+        val characterNavigator: CharacterNavigator = CharacterNavigatorImpl(fragmentNavigator)
+        val viewModel = CharacterViewModel(useCase, characterNavigator, errorMapper)
 
         //when
         viewModel.characters.observeForTesting()
@@ -88,7 +116,9 @@ internal class CharacterViewModelTest : ViewModelTest() {
         val errorMapper = mockk<ErrorMapper> {
             every { map(any()) } returns throwable.message!!
         }
-        val viewModel = CharacterViewModel(useCase, errorMapper)
+        val fragmentNavigator = mockk<FragmentNavigator>(relaxed = true)
+        val characterNavigator: CharacterNavigator = CharacterNavigatorImpl(fragmentNavigator)
+        val viewModel = CharacterViewModel(useCase, characterNavigator, errorMapper)
 
         //when
         viewModel.message.observeForever(observer)

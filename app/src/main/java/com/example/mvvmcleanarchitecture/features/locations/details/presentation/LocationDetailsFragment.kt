@@ -10,7 +10,8 @@ import com.example.mvvmcleanarchitecture.features.locations.all.presentation.mod
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LocationDetailsFragment :
-    BaseFragment<LocationDetailsViewModel, FragmentLocationDetailsBinding>(R.layout.fragment_location_details) {
+    BaseFragment<LocationDetailsViewModel, FragmentLocationDetailsBinding>
+        (R.layout.fragment_location_details) {
     override val viewModel: LocationDetailsViewModel by viewModel()
     override var binding: FragmentLocationDetailsBinding? = null
 

@@ -1,6 +1,9 @@
 package com.example.mvvmcleanarchitecture.mock
 
 import com.example.mvvmcleanarchitecture.core.api.model.*
+import com.example.mvvmcleanarchitecture.features.characters.all.presentation.model.CharacterDisplayable
+import com.example.mvvmcleanarchitecture.features.characters.all.presentation.model.CharacterLocationDisplayable
+import com.example.mvvmcleanarchitecture.features.characters.all.presentation.model.OriginDisplayable
 import com.example.mvvmcleanarchitecture.features.characters.data.local.model.CharacterCached
 import com.example.mvvmcleanarchitecture.features.characters.domain.model.Character
 import com.example.mvvmcleanarchitecture.features.characters.domain.model.CharacterLocation
@@ -201,5 +204,32 @@ fun LocationDisplayable.Companion.mock() = LocationDisplayable(
     type = "type",
     dimension = "dimension",
     residents = emptyList(),
+    url = "url"
+)
+
+@TestOnly
+fun OriginDisplayable.Companion.mock() = OriginDisplayable(
+    name = "name",
+    url = "url"
+)
+
+@TestOnly
+fun CharacterLocationDisplayable.Companion.mock() = CharacterLocationDisplayable(
+    name = "name",
+    url = "url"
+)
+
+@TestOnly
+fun CharacterDisplayable.Companion.mock() = CharacterDisplayable(
+    id = 1,
+    episode = emptyList(),
+    gender = "gender",
+    image = "image",
+    origin = OriginDisplayable.mock(),
+    name = "name",
+    characterLocation = CharacterLocationDisplayable.mock(),
+    species = "species",
+    status = "status",
+    type = "type",
     url = "url"
 )
