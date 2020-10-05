@@ -10,5 +10,6 @@
     <string name="title_episodes">Episodes</string>
     <string name="title_locations">Locations</string>
     <string name="title_episode_details">Episode Details</string>
+    <string name="title_location_details">Location Details</string>
     <string name="title_episode_example">The Ricklantis Mixup</string>
 </resources>

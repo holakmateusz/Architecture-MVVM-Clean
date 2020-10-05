@@ -11,7 +11,7 @@
         android:label="@string/title_episodes"
         tools:layout="@layout/fragment_episode">
         <action
-            android:id="@+id/action_episodes_screen_to_episode_detals_screen"
+            android:id="@+id/action_episodes_screen_to_episode_details_screen"
             app:destination="@id/episodeDetailsFragment"
             app:popUpTo="@id/episodes_screen" />
     </fragment>
@@ -24,11 +24,20 @@
 
     <fragment
         android:id="@+id/locations_screen"
-        android:name="com.example.mvvmcleanarchitecture.features.locations.presentation.LocationFragment"
+        android:name="com.example.mvvmcleanarchitecture.features.locations.all.presentation.LocationFragment"
         android:label="@string/title_locations"
-        tools:layout="@layout/fragment_location" />
+        tools:layout="@layout/fragment_location">
+        <action
+            android:id="@+id/action_locations_screen_to_location_details_screen"
+            app:destination="@id/locationDetailsFragment"
+            app:popUpTo="@id/locations_screen" />
+    </fragment>
     <fragment
         android:id="@+id/episodeDetailsFragment"
         android:name="com.example.mvvmcleanarchitecture.features.episodes.details.presentation.EpisodeDetailsFragment"
         android:label="@string/title_episode_details" />
+    <fragment
+        android:id="@+id/locationDetailsFragment"
+        android:name="com.example.mvvmcleanarchitecture.features.locations.details.presentation.LocationDetailsFragment"
+        android:label="@string/title_location_details" />
 </navigation>

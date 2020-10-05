@@ -8,7 +8,7 @@ import com.example.mvvmcleanarchitecture.features.episodes.details.presentation.
 class EpisodeNavigatorImpl(private val fragmentNavigator: FragmentNavigator) : EpisodeNavigator {
     override fun openEpisodeDetailsScreen(episode: EpisodeDisplayable) {
         fragmentNavigator.navigateTo(
-            R.id.action_episodes_screen_to_episode_detals_screen,
+            R.id.action_episodes_screen_to_episode_details_screen,
             EPISODE_DETAILS_KEY to episode
         )
     }

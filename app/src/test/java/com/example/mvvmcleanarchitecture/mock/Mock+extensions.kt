@@ -8,6 +8,7 @@ import com.example.mvvmcleanarchitecture.features.characters.domain.model.Origin
 import com.example.mvvmcleanarchitecture.features.episodes.all.presentation.model.EpisodeDisplayable
 import com.example.mvvmcleanarchitecture.features.episodes.data.local.model.EpisodeCached
 import com.example.mvvmcleanarchitecture.features.episodes.domain.model.Episode
+import com.example.mvvmcleanarchitecture.features.locations.all.presentation.model.LocationDisplayable
 import com.example.mvvmcleanarchitecture.features.locations.data.local.model.LocationCached
 import com.example.mvvmcleanarchitecture.features.locations.domain.model.Location
 import org.jetbrains.annotations.TestOnly
@@ -190,5 +191,15 @@ fun EpisodeDisplayable.Companion.mock() = EpisodeDisplayable(
     airDate = "airDate",
     code = "code",
     characters = emptyList(),
+    url = "url"
+)
+
+@TestOnly
+fun LocationDisplayable.Companion.mock() = LocationDisplayable(
+    id = 1,
+    name = "location name",
+    type = "type",
+    dimension = "dimension",
+    residents = emptyList(),
     url = "url"
 )

@@ -26,7 +26,7 @@ internal class EpisodeNavigatorImplTest {
         //then
         verify {
             fragmentNavigator.navigateTo(
-                R.id.action_episodes_screen_to_episode_detals_screen,
+                R.id.action_episodes_screen_to_episode_details_screen,
                 capture(slot)
             )
         }

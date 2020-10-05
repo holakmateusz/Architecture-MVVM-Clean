@@ -1,14 +1,16 @@
-package com.example.mvvmcleanarchitecture.features.locations.presentation
+package com.example.mvvmcleanarchitecture.features.locations.all.presentation
 
 import androidx.lifecycle.*
 import com.example.mvvmcleanarchitecture.core.base.BaseViewModel
 import com.example.mvvmcleanarchitecture.core.exception.ErrorMapper
+import com.example.mvvmcleanarchitecture.features.locations.all.presentation.model.LocationDisplayable
 import com.example.mvvmcleanarchitecture.features.locations.domain.GetLocationsUseCase
 import com.example.mvvmcleanarchitecture.features.locations.domain.model.Location
-import com.example.mvvmcleanarchitecture.features.locations.presentation.model.LocationDisplayable
+import com.example.mvvmcleanarchitecture.features.locations.navigation.LocationNavigator
 
 class LocationViewModel(
     private val getLocationsUseCase: GetLocationsUseCase,
+    private val locationNavigator: LocationNavigator,
     errorMapper: ErrorMapper
 ) : BaseViewModel(errorMapper),
     DefaultLifecycleObserver {
@@ -34,5 +36,9 @@ class LocationViewModel(
             result.onSuccess { locationsLiveData.value = it }
             result.onFailure { handleFailure(it) }
         }
+    }
+
+    internal fun onLocationClick(location: LocationDisplayable) {
+        locationNavigator.openLocationDetailsScreen(location)
     }
 }

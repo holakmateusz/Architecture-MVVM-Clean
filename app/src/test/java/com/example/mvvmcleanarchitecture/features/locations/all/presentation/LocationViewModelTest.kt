@@ -1,11 +1,15 @@
-package com.example.mvvmcleanarchitecture.features.locations.presentation
+package com.example.mvvmcleanarchitecture.features.locations.all.presentation
 
 import androidx.lifecycle.Observer
 import androidx.lifecycle.viewModelScope
 import com.example.mvvmcleanarchitecture.core.base.UiState
 import com.example.mvvmcleanarchitecture.core.exception.ErrorMapper
+import com.example.mvvmcleanarchitecture.core.navigation.FragmentNavigator
+import com.example.mvvmcleanarchitecture.features.locations.all.presentation.model.LocationDisplayable
 import com.example.mvvmcleanarchitecture.features.locations.domain.GetLocationsUseCase
 import com.example.mvvmcleanarchitecture.features.locations.domain.model.Location
+import com.example.mvvmcleanarchitecture.features.locations.navigation.LocationNavigator
+import com.example.mvvmcleanarchitecture.features.locations.navigation.LocationNavigatorImpl
 import com.example.mvvmcleanarchitecture.mock.mock
 import com.example.mvvmcleanarchitecture.utils.ViewModelTest
 import com.example.mvvmcleanarchitecture.utils.getOrAwaitValue
@@ -17,12 +21,32 @@ import org.amshove.kluent.shouldBe
 import org.junit.jupiter.api.Test
 
 internal class LocationViewModelTest : ViewModelTest() {
+
+    @Test
+    fun `When location is clicked THEN open location details screen`() {
+        //given
+        val useCase = mockk<GetLocationsUseCase>(relaxed = true)
+        val errorMapper = mockk<ErrorMapper>(relaxed = true)
+        val fragmentNavigator = mockk<FragmentNavigator>(relaxed = true)
+        val locationNavigator: LocationNavigator = LocationNavigatorImpl(fragmentNavigator)
+        val viewModel = LocationViewModel(useCase, locationNavigator, errorMapper)
+        val location = LocationDisplayable.mock()
+
+        //when
+        viewModel.onLocationClick(location)
+
+        //then
+        verify { locationNavigator.openLocationDetailsScreen(location) }
+    }
+
     @Test
     fun `When locations live data is observed THEN set pending state`() {
         //given
         val useCase = mockk<GetLocationsUseCase>(relaxed = true)
         val errorMapper = mockk<ErrorMapper>(relaxed = true)
-        val viewModel = LocationViewModel(useCase, errorMapper)
+        val fragmentNavigator = mockk<FragmentNavigator>(relaxed = true)
+        val locationNavigator: LocationNavigator = LocationNavigatorImpl(fragmentNavigator)
+        val viewModel = LocationViewModel(useCase, locationNavigator, errorMapper)
 
         //when
         viewModel.locations.observeForTesting()
@@ -36,7 +60,9 @@ internal class LocationViewModelTest : ViewModelTest() {
         //given
         val useCase = mockk<GetLocationsUseCase>(relaxed = true)
         val errorMapper = mockk<ErrorMapper>(relaxed = true)
-        val viewModel = LocationViewModel(useCase, errorMapper)
+        val fragmentNavigator = mockk<FragmentNavigator>(relaxed = true)
+        val locationNavigator: LocationNavigator = LocationNavigatorImpl(fragmentNavigator)
+        val viewModel = LocationViewModel(useCase, locationNavigator, errorMapper)
 
         //when
         viewModel.locations.observeForTesting()
@@ -55,7 +81,9 @@ internal class LocationViewModelTest : ViewModelTest() {
             }
         }
         val errorMapper = mockk<ErrorMapper>(relaxed = true)
-        val viewModel = LocationViewModel(useCase, errorMapper)
+        val fragmentNavigator = mockk<FragmentNavigator>(relaxed = true)
+        val locationNavigator: LocationNavigator = LocationNavigatorImpl(fragmentNavigator)
+        val viewModel = LocationViewModel(useCase, locationNavigator, errorMapper)
 
         //when
         viewModel.locations.observeForTesting()
@@ -85,7 +113,9 @@ internal class LocationViewModelTest : ViewModelTest() {
         val errorMapper = mockk<ErrorMapper> {
             every { map(any()) } returns throwable.message!!
         }
-        val viewModel = LocationViewModel(useCase, errorMapper)
+        val fragmentNavigator = mockk<FragmentNavigator>(relaxed = true)
+        val locationNavigator: LocationNavigator = LocationNavigatorImpl(fragmentNavigator)
+        val viewModel = LocationViewModel(useCase, locationNavigator, errorMapper)
 
         //when
         viewModel.message.observeForever(observer)
