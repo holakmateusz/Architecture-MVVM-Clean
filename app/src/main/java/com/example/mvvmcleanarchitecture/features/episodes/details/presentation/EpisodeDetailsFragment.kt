@@ -37,12 +37,20 @@ class EpisodeDetailsFragment :
     }
 
     private fun showEpisode(episode: EpisodeDisplayable) {
-        binding?.firstEpisodeDetail?.episodeDetailsImage?.setImageResource(R.drawable.ic_episode)
-        binding?.firstEpisodeDetail?.episodeDetailsDescription?.text = episode.name
-        binding?.secondEpisodeDetail?.episodeDetailsImage?.setImageResource(R.drawable.ic_timeline)
-        binding?.secondEpisodeDetail?.episodeDetailsDescription?.text = episode.airDate
-        binding?.thirdEpisodeDetail?.episodeDetailsImage?.setImageResource(R.drawable.ic_numbered)
-        binding?.thirdEpisodeDetail?.episodeDetailsDescription?.text = episode.code
+        binding?.apply {
+            with(firstEpisodeDetail) {
+                episodeDetailsImage.setImageResource(R.drawable.ic_episode)
+                episodeDetailsDescription.text = episode.name
+            }
+            with(secondEpisodeDetail) {
+                episodeDetailsImage.setImageResource(R.drawable.ic_timeline)
+                episodeDetailsDescription.text = episode.airDate
+            }
+            with(thirdEpisodeDetail) {
+                episodeDetailsImage.setImageResource(R.drawable.ic_numbered)
+                episodeDetailsDescription.text = episode.code
+            }
+        }
     }
 
     private fun handleBundleData(bundle: Bundle) {

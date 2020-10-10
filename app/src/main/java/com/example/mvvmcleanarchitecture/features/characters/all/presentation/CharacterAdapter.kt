@@ -10,11 +10,11 @@ import com.example.mvvmcleanarchitecture.features.characters.all.presentation.mo
 
 class CharacterAdapter : BaseAdapter<CharacterDisplayable>() {
     override val items: MutableList<CharacterDisplayable> by lazy { mutableListOf<CharacterDisplayable>() }
-    private lateinit var binding: ItemCharacterBinding
     internal lateinit var onCharacterListener: OnCharacterListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        binding = ItemCharacterBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            ItemCharacterBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return CharacterViewHolder(binding, onCharacterListener)
     }
 

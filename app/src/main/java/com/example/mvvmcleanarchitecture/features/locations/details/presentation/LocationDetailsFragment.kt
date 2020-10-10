@@ -44,7 +44,9 @@ class LocationDetailsFragment :
     }
 
     private fun showLocation(location: LocationDisplayable) {
-        binding?.locationName?.text = location.name
-        binding?.locationType?.text = location.type
+        binding?.apply {
+            locationName.text = location.name
+            locationType.text = location.type
+        }
     }
 }

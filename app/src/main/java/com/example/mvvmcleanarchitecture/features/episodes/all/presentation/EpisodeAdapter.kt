@@ -9,11 +9,10 @@ import com.example.mvvmcleanarchitecture.features.episodes.all.presentation.mode
 
 class EpisodeAdapter : BaseAdapter<EpisodeDisplayable>() {
     override val items: MutableList<EpisodeDisplayable> by lazy { mutableListOf<EpisodeDisplayable>() }
-    private lateinit var binding: ItemEpisodeBinding
     internal lateinit var onEpisodeListener: OnEpisodeListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        binding = ItemEpisodeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemEpisodeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return EpisodeViewHolder(binding, onEpisodeListener)
     }
 

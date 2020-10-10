@@ -23,7 +23,7 @@ val characterModule = module {
 
     //presentation
     viewModel { CharacterViewModel(get(), get(), get()) }
-    viewModel { CharacterDetailsViewModel(get()) }
+    viewModel { CharacterDetailsViewModel() }
     factory { CharacterFragment() }
     factory { CharacterDetailsFragment() }
     factory { CharacterAdapter() }

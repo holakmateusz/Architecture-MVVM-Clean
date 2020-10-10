@@ -2,10 +2,9 @@ package com.example.mvvmcleanarchitecture.features.characters.details.presentati
 
 import androidx.lifecycle.MutableLiveData
 import com.example.mvvmcleanarchitecture.core.base.BaseViewModel
-import com.example.mvvmcleanarchitecture.core.exception.ErrorMapper
 import com.example.mvvmcleanarchitecture.features.characters.all.presentation.model.CharacterDisplayable
 
-class CharacterDetailsViewModel(errorMapper: ErrorMapper) : BaseViewModel(errorMapper) {
+class CharacterDetailsViewModel : BaseViewModel() {
     private val _character: MutableLiveData<CharacterDisplayable> by lazy {
         MutableLiveData<CharacterDisplayable>()
     }

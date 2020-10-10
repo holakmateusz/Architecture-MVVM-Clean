@@ -23,7 +23,7 @@ val locationModule = module {
 
     //presentation
     viewModel { LocationViewModel(get(), get(), get()) }
-    viewModel { LocationDetailsViewModel(get()) }
+    viewModel { LocationDetailsViewModel() }
     factory { LocationFragment() }
     factory { LocationDetailsFragment() }
     factory { LocationAdapter() }

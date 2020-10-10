@@ -2,10 +2,9 @@ package com.example.mvvmcleanarchitecture.features.locations.details.presentatio
 
 import androidx.lifecycle.MutableLiveData
 import com.example.mvvmcleanarchitecture.core.base.BaseViewModel
-import com.example.mvvmcleanarchitecture.core.exception.ErrorMapper
 import com.example.mvvmcleanarchitecture.features.locations.all.presentation.model.LocationDisplayable
 
-class LocationDetailsViewModel(errorMapper: ErrorMapper) : BaseViewModel(errorMapper) {
+class LocationDetailsViewModel : BaseViewModel() {
     private val _location: MutableLiveData<LocationDisplayable> by lazy {
         MutableLiveData<LocationDisplayable>()
     }

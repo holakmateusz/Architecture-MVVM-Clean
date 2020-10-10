@@ -46,13 +46,15 @@ class CharacterDetailsFragment :
 
     private fun showCharacter(character: CharacterDisplayable) {
         binding?.apply {
-            Glide.with(requireContext()).load(character.image)
-                .into(characterDetailsContainer.imageView)
-            characterDetailsContainer.characterName.text = character.name
-            val speciesWithStatusLabel = "${character.status} - ${character.species}"
-            characterDetailsContainer.characterSpecies.text = speciesWithStatusLabel
-            characterDetailsContainer.characterLocation.text = character.characterLocation.name
-            characterDetailsContainer.characterOrigin.text = character.origin.name
+            with(characterDetailsContainer) {
+                Glide.with(requireContext()).load(character.image)
+                    .into(imageView)
+                characterName.text = character.name
+                val speciesWithStatusLabel = "${character.status} - ${character.species}"
+                characterSpecies.text = speciesWithStatusLabel
+                characterLocation.text = character.characterLocation.name
+                characterOrigin.text = character.origin.name
+            }
         }
     }
 }
