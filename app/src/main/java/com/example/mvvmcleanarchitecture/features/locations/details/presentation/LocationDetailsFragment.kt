@@ -1,8 +1,8 @@
 package com.example.mvvmcleanarchitecture.features.locations.details.presentation
 
 import android.os.Bundle
-import android.view.View
 import androidx.lifecycle.observe
+import com.example.mvvmcleanarchitecture.BR
 import com.example.mvvmcleanarchitecture.R
 import com.example.mvvmcleanarchitecture.core.base.BaseFragment
 import com.example.mvvmcleanarchitecture.databinding.FragmentLocationDetailsBinding
@@ -10,18 +10,15 @@ import com.example.mvvmcleanarchitecture.features.locations.all.presentation.mod
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LocationDetailsFragment :
-    BaseFragment<LocationDetailsViewModel, FragmentLocationDetailsBinding>
-        (R.layout.fragment_location_details) {
+    BaseFragment<LocationDetailsViewModel, FragmentLocationDetailsBinding>(
+        BR.viewModel,
+        R.layout.fragment_location_details
+    ) {
     override val viewModel: LocationDetailsViewModel by viewModel()
     override var binding: FragmentLocationDetailsBinding? = null
 
     companion object {
         internal const val LOCATION_DETAILS_KEY = "locationDetailsKey"
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding = FragmentLocationDetailsBinding.bind(view)
-        super.onViewCreated(view, savedInstanceState)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

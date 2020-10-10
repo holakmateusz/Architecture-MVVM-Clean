@@ -1,8 +1,8 @@
 package com.example.mvvmcleanarchitecture.features.episodes.all.presentation
 
-import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.observe
+import com.example.mvvmcleanarchitecture.BR
 import com.example.mvvmcleanarchitecture.R
 import com.example.mvvmcleanarchitecture.core.base.BaseFragment
 import com.example.mvvmcleanarchitecture.databinding.FragmentEpisodeBinding
@@ -11,19 +11,17 @@ import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class EpisodeFragment :
-    BaseFragment<EpisodeViewModel, FragmentEpisodeBinding>(R.layout.fragment_episode),
+    BaseFragment<EpisodeViewModel, FragmentEpisodeBinding>(
+        BR.viewModel,
+        R.layout.fragment_episode
+    ),
     EpisodeAdapter.OnEpisodeListener {
     override val viewModel: EpisodeViewModel by viewModel()
     private val adapter: EpisodeAdapter by inject()
     override var binding: FragmentEpisodeBinding? = null
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding = FragmentEpisodeBinding.bind(view)
-        super.onViewCreated(view, savedInstanceState)
-    }
-
-    override fun initViews() {
-        initRecyclerView()
+    override fun initViews(binding: FragmentEpisodeBinding) {
+        initRecyclerView(binding)
     }
 
     override fun initObservers() {
@@ -39,9 +37,9 @@ class EpisodeFragment :
         showProgressBar()
     }
 
-    private fun initRecyclerView() {
+    private fun initRecyclerView(binding: FragmentEpisodeBinding) {
         adapter.onEpisodeListener = this@EpisodeFragment
-        binding?.episodeContainer?.adapter = adapter
+        binding.episodeContainer.adapter = adapter
     }
 
     private fun observeEpisodes() {

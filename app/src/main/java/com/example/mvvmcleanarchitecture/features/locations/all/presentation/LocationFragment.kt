@@ -1,8 +1,8 @@
 package com.example.mvvmcleanarchitecture.features.locations.all.presentation
 
-import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.observe
+import com.example.mvvmcleanarchitecture.BR
 import com.example.mvvmcleanarchitecture.R
 import com.example.mvvmcleanarchitecture.core.base.BaseFragment
 import com.example.mvvmcleanarchitecture.databinding.FragmentLocationBinding
@@ -11,19 +11,17 @@ import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LocationFragment :
-    BaseFragment<LocationViewModel, FragmentLocationBinding>(R.layout.fragment_location),
+    BaseFragment<LocationViewModel, FragmentLocationBinding>(
+        BR.viewModel,
+        R.layout.fragment_location
+    ),
     LocationAdapter.OnLocationListener {
     override val viewModel: LocationViewModel by viewModel()
     private val adapter: LocationAdapter by inject()
     override var binding: FragmentLocationBinding? = null
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding = FragmentLocationBinding.bind(view)
-        super.onViewCreated(view, savedInstanceState)
-    }
-
-    override fun initViews() {
-        initRecyclerView()
+    override fun initViews(binding: FragmentLocationBinding) {
+        initRecyclerView(binding)
     }
 
     override fun initObservers() {
@@ -39,9 +37,9 @@ class LocationFragment :
         showProgressBar()
     }
 
-    private fun initRecyclerView() {
+    private fun initRecyclerView(binding: FragmentLocationBinding) {
         adapter.onLocationListener = this@LocationFragment
-        binding?.locationContainer?.adapter = adapter
+        binding.locationContainer.adapter = adapter
     }
 
     private fun observeLocations() {
