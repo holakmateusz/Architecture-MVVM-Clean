@@ -1,6 +1,5 @@
 package com.example.mvvmcleanarchitecture.features.locations.all.presentation
 
-import android.view.View
 import androidx.lifecycle.observe
 import com.example.mvvmcleanarchitecture.BR
 import com.example.mvvmcleanarchitecture.R
@@ -29,14 +28,6 @@ class LocationFragment :
         observeLocations()
     }
 
-    override fun onIdleState() {
-        hideProgressBar()
-    }
-
-    override fun onPendingState() {
-        showProgressBar()
-    }
-
     private fun initRecyclerView(binding: FragmentLocationBinding) {
         adapter.onLocationListener = this@LocationFragment
         binding.locationContainer.adapter = adapter
@@ -46,14 +37,6 @@ class LocationFragment :
         viewModel.locations.observe(this) {
             showLocations(it)
         }
-    }
-
-    private fun hideProgressBar() {
-        binding?.progressBarContainer?.progressBar?.visibility = View.GONE
-    }
-
-    private fun showProgressBar() {
-        binding?.progressBarContainer?.progressBar?.visibility = View.VISIBLE
     }
 
     private fun showLocations(locations: List<LocationDisplayable>) {

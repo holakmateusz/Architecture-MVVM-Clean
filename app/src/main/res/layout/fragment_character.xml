@@ -24,6 +24,7 @@
 
         <include
             android:id="@+id/progressBarContainer"
-            layout="@layout/progress_bar" />
+            layout="@layout/progress_bar"
+            app:viewModel="@{viewModel}" />
     </FrameLayout>
 </layout>

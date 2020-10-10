@@ -1,6 +1,5 @@
 package com.example.mvvmcleanarchitecture.features.episodes.all.presentation
 
-import android.view.View
 import androidx.lifecycle.observe
 import com.example.mvvmcleanarchitecture.BR
 import com.example.mvvmcleanarchitecture.R
@@ -29,14 +28,6 @@ class EpisodeFragment :
         observeEpisodes()
     }
 
-    override fun onIdleState() {
-        hideProgressBar()
-    }
-
-    override fun onPendingState() {
-        showProgressBar()
-    }
-
     private fun initRecyclerView(binding: FragmentEpisodeBinding) {
         adapter.onEpisodeListener = this@EpisodeFragment
         binding.episodeContainer.adapter = adapter
@@ -46,14 +37,6 @@ class EpisodeFragment :
         viewModel.episodes.observe(this) {
             showEpisodes(it)
         }
-    }
-
-    private fun hideProgressBar() {
-        binding?.progressBarContainer?.progressBar?.visibility = View.GONE
-    }
-
-    private fun showProgressBar() {
-        binding?.progressBarContainer?.progressBar?.visibility = View.VISIBLE
     }
 
     private fun showEpisodes(episodes: List<EpisodeDisplayable>) {

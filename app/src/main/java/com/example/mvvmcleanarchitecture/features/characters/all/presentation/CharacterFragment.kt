@@ -1,6 +1,5 @@
 package com.example.mvvmcleanarchitecture.features.characters.all.presentation
 
-import android.view.View
 import androidx.lifecycle.observe
 import com.example.mvvmcleanarchitecture.BR
 import com.example.mvvmcleanarchitecture.R
@@ -28,14 +27,6 @@ class CharacterFragment : BaseFragment<CharacterViewModel, FragmentCharacterBind
         observeCharacters()
     }
 
-    override fun onIdleState() {
-        hideProgressBar()
-    }
-
-    override fun onPendingState() {
-        showProgressBar()
-    }
-
     private fun initRecyclerView(binding: FragmentCharacterBinding) {
         adapter.onCharacterListener = this@CharacterFragment
         binding.characterContainer.adapter = adapter
@@ -45,14 +36,6 @@ class CharacterFragment : BaseFragment<CharacterViewModel, FragmentCharacterBind
         viewModel.characters.observe(this) {
             showCharacters(it)
         }
-    }
-
-    private fun hideProgressBar() {
-        binding?.progressBarContainer?.progressBar?.visibility = View.GONE
-    }
-
-    private fun showProgressBar() {
-        binding?.progressBarContainer?.progressBar?.visibility = View.VISIBLE
     }
 
     private fun showCharacters(characters: List<CharacterDisplayable>) {
