@@ -5,4 +5,12 @@
     <string name="error_internal">Houston, we have a server-side problem. Try again in a few minutes.</string>
     <string name="error_bad_request">Validation error. Please check input parameters.</string>
     <string name="error_unknown">Ops… Something went wrong</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_characters">Characters</string>
+    <string name="title_episodes">Episodes</string>
+    <string name="title_locations">Locations</string>
+    <string name="title_episode_details">Episode Details</string>
+    <string name="title_location_details">Location Details</string>
+    <string name="title_character_details">Character Details</string>
+    <string name="title_episode_example">The Ricklantis Mixup</string>
 </resources>

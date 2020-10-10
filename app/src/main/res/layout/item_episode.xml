@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/ParentWidthWrapHeight"
     android:layout_margin="4dp"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
     app:cardCornerRadius="4dp"
     app:cardElevation="6dp"
     app:contentPadding="4dp">
@@ -18,7 +21,7 @@
             style="@style/DescriptionDefault"
             android:paddingBottom="2dp"
             android:textStyle="bold"
-            tools:text="The Ricklantis Mixup" />
+            tools:text="@string/title_episode_example" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/episodeAirDate"
