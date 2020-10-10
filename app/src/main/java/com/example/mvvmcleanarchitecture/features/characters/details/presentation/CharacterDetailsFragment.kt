@@ -47,11 +47,8 @@ class CharacterDetailsFragment :
             with(characterDetailsContainer) {
                 Glide.with(requireContext()).load(character.image)
                     .into(imageView)
-                characterName.text = character.name
-                val speciesWithStatusLabel = "${character.status} - ${character.species}"
-                characterSpecies.text = speciesWithStatusLabel
-                characterLocation.text = character.characterLocation.name
-                characterOrigin.text = character.origin.name
+                item = character
+                executePendingBindings()
             }
         }
     }

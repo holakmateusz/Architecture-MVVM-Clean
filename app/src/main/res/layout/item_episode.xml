@@ -1,38 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    style="@style/ParentWidthWrapHeight"
-    android:layout_margin="4dp"
-    android:background="?android:attr/selectableItemBackground"
-    android:clickable="true"
-    android:focusable="true"
-    app:cardCornerRadius="4dp"
-    app:cardElevation="6dp"
-    app:contentPadding="4dp">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <data>
+        <variable
+            name="item"
+            type="com.example.mvvmcleanarchitecture.features.episodes.all.presentation.model.EpisodeDisplayable" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
         style="@style/ParentWidthWrapHeight"
-        android:orientation="vertical"
-        android:padding="4dp">
+        android:layout_margin="4dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="6dp"
+        app:contentPadding="4dp">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/episodeName"
-            style="@style/DescriptionDefault"
-            android:paddingBottom="2dp"
-            android:textStyle="bold"
-            tools:text="@string/title_episode_example" />
+        <androidx.appcompat.widget.LinearLayoutCompat
+            style="@style/ParentWidthWrapHeight"
+            android:orientation="vertical"
+            android:padding="4dp">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/episodeAirDate"
-            style="@style/DescriptionDefault"
-            android:paddingBottom="2dp"
-            tools:text="September 10, 2017" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/episodeName"
+                style="@style/DescriptionDefault"
+                android:paddingBottom="2dp"
+                android:text="@{item.name}"
+                android:textStyle="bold"
+                tools:text="@string/title_episode_example" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/episodeCode"
-            style="@style/DescriptionDefault"
-            android:paddingBottom="2dp"
-            tools:text="S03E07" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
-</com.google.android.material.card.MaterialCardView>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/episodeAirDate"
+                style="@style/DescriptionDefault"
+                android:paddingBottom="2dp"
+                android:text="@{item.airDate}"
+                tools:text="September 10, 2017" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/episodeCode"
+                style="@style/DescriptionDefault"
+                android:paddingBottom="2dp"
+                android:text="@{item.code}"
+                tools:text="S03E07" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

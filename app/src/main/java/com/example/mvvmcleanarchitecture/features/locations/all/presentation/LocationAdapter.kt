@@ -30,11 +30,11 @@ class LocationAdapter : BaseAdapter<LocationDisplayable>() {
         RecyclerView.ViewHolder(binding.root) {
         fun bind(location: LocationDisplayable) {
             binding.run {
+                item = location
                 root.setOnClickListener {
                     onLocationListener.onClick(location)
                 }
-                locationName.text = location.name
-                locationType.text = location.type
+                executePendingBindings()
             }
         }
     }

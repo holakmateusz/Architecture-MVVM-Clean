@@ -30,15 +30,12 @@ class CharacterAdapter : BaseAdapter<CharacterDisplayable>() {
         RecyclerView.ViewHolder(binding.root) {
         fun bind(character: CharacterDisplayable) {
             binding.run {
+                item = character
                 root.setOnClickListener {
                     onCharacterListener.onClick(character)
                 }
                 Glide.with(root).load(character.image).into(imageView)
-                characterName.text = character.name
-                val speciesWithStatusLabel = "${character.status} - ${character.species}"
-                characterSpecies.text = speciesWithStatusLabel
-                characterLocation.text = character.characterLocation.name
-                characterOrigin.text = character.origin.name
+                executePendingBindings()
             }
         }
     }

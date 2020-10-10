@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="item"
+            type="com.example.mvvmcleanarchitecture.features.characters.all.presentation.model.CharacterDisplayable" />
+    </data>
+
     <com.google.android.material.card.MaterialCardView
         style="@style/ParentWidthWrapHeight"
         android:layout_margin="4dp"
@@ -27,6 +33,7 @@
                 android:layout_width="0dp"
                 android:paddingBottom="2dp"
                 android:textStyle="bold"
+                android:text="@{item.name}"
                 app:layout_constraintEnd_toEndOf="@id/imageView"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/imageView"
@@ -37,6 +44,7 @@
                 style="@style/RemoteDescription"
                 android:paddingTop="5dp"
                 android:textStyle="bold"
+                android:text="@{item.speciesWithStatusLabel}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/imageView"
                 app:layout_constraintTop_toTopOf="parent"
@@ -57,6 +65,7 @@
                 android:layout_width="0dp"
                 android:paddingTop="5dp"
                 android:textStyle="bold"
+                android:text="@{item.characterLocation.name}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/imageView"
                 app:layout_constraintTop_toBottomOf="@id/characterLocationDescription"
@@ -78,6 +87,7 @@
                 android:paddingHorizontal="2dp"
                 android:paddingTop="5dp"
                 android:textStyle="bold"
+                android:text="@{item.origin.name}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/imageView"
                 app:layout_constraintTop_toBottomOf="@id/characterOriginDescription"

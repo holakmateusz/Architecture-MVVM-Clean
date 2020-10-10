@@ -28,12 +28,11 @@ class EpisodeAdapter : BaseAdapter<EpisodeDisplayable>() {
         RecyclerView.ViewHolder(binding.root) {
         fun bind(episode: EpisodeDisplayable) {
             binding.run {
+                item = episode
                 root.setOnClickListener {
                     onEpisodeListener.onClick(episode)
                 }
-                episodeName.text = episode.name
-                episodeAirDate.text = episode.airDate
-                episodeCode.text = episode.code
+                executePendingBindings()
             }
         }
     }
