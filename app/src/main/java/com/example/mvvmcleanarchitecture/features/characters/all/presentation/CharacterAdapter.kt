@@ -3,7 +3,6 @@ package com.example.mvvmcleanarchitecture.features.characters.all.presentation
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.mvvmcleanarchitecture.core.base.BaseAdapter
 import com.example.mvvmcleanarchitecture.databinding.ItemCharacterBinding
 import com.example.mvvmcleanarchitecture.features.characters.all.presentation.model.CharacterDisplayable
@@ -33,7 +32,6 @@ class CharacterAdapter : BaseAdapter<CharacterDisplayable>() {
                 root.setOnClickListener {
                     onCharacterListener.onClick(character)
                 }
-                Glide.with(root).load(character.image).into(imageView)
                 executePendingBindings()
             }
         }
