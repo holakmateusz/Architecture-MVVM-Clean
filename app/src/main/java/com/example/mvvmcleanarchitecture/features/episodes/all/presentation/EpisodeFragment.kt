@@ -1,6 +1,5 @@
 package com.example.mvvmcleanarchitecture.features.episodes.all.presentation
 
-import androidx.lifecycle.observe
 import com.example.mvvmcleanarchitecture.BR
 import com.example.mvvmcleanarchitecture.R
 import com.example.mvvmcleanarchitecture.core.base.BaseFragment
@@ -23,24 +22,9 @@ class EpisodeFragment :
         initRecyclerView(binding)
     }
 
-    override fun initObservers() {
-        super.initObservers()
-        observeEpisodes()
-    }
-
     private fun initRecyclerView(binding: FragmentEpisodeBinding) {
         adapter.onEpisodeListener = this@EpisodeFragment
         binding.episodeContainer.adapter = adapter
-    }
-
-    private fun observeEpisodes() {
-        viewModel.episodes.observe(this) {
-            showEpisodes(it)
-        }
-    }
-
-    private fun showEpisodes(episodes: List<EpisodeDisplayable>) {
-        adapter.setItems(episodes)
     }
 
     override fun onClick(episode: EpisodeDisplayable) {

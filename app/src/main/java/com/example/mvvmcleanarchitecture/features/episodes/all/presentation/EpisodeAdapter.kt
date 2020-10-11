@@ -8,7 +8,6 @@ import com.example.mvvmcleanarchitecture.databinding.ItemEpisodeBinding
 import com.example.mvvmcleanarchitecture.features.episodes.all.presentation.model.EpisodeDisplayable
 
 class EpisodeAdapter : BaseAdapter<EpisodeDisplayable>() {
-    override val items: MutableList<EpisodeDisplayable> by lazy { mutableListOf<EpisodeDisplayable>() }
     internal lateinit var onEpisodeListener: OnEpisodeListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {

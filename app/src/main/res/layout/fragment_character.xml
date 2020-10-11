@@ -11,14 +11,13 @@
 
     <FrameLayout
         android:id="@+id/rootContainer"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        style="@style/ParentWidthParentHeight"
         tools:context="com.example.mvvmcleanarchitecture.features.characters.all.presentation.CharacterFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/characterContainer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            style="@style/ParentWidthParentHeight"
+            app:items="@{viewModel.characters}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_character" />
 

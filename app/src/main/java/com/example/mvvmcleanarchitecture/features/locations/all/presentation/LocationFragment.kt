@@ -1,6 +1,5 @@
 package com.example.mvvmcleanarchitecture.features.locations.all.presentation
 
-import androidx.lifecycle.observe
 import com.example.mvvmcleanarchitecture.BR
 import com.example.mvvmcleanarchitecture.R
 import com.example.mvvmcleanarchitecture.core.base.BaseFragment
@@ -23,24 +22,9 @@ class LocationFragment :
         initRecyclerView(binding)
     }
 
-    override fun initObservers() {
-        super.initObservers()
-        observeLocations()
-    }
-
     private fun initRecyclerView(binding: FragmentLocationBinding) {
         adapter.onLocationListener = this@LocationFragment
         binding.locationContainer.adapter = adapter
-    }
-
-    private fun observeLocations() {
-        viewModel.locations.observe(this) {
-            showLocations(it)
-        }
-    }
-
-    private fun showLocations(locations: List<LocationDisplayable>) {
-        adapter.setItems(locations)
     }
 
     override fun onClick(location: LocationDisplayable) {

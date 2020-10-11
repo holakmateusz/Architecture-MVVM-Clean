@@ -10,14 +10,13 @@
     </data>
 
     <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        style="@style/ParentWidthParentHeight"
         tools:context="com.example.mvvmcleanarchitecture.features.locations.all.presentation.LocationFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/locationContainer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            style="@style/ParentWidthParentHeight"
+            app:items="@{viewModel.locations}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_location" />
 

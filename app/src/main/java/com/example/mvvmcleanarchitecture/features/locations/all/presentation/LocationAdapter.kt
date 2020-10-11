@@ -9,7 +9,6 @@ import com.example.mvvmcleanarchitecture.databinding.ItemLocationBinding
 import com.example.mvvmcleanarchitecture.features.locations.all.presentation.model.LocationDisplayable
 
 class LocationAdapter : BaseAdapter<LocationDisplayable>() {
-    override val items: MutableList<LocationDisplayable> by lazy { mutableListOf<LocationDisplayable>() }
     internal lateinit var onLocationListener: OnLocationListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {

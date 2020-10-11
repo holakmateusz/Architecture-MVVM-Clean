@@ -1,6 +1,5 @@
 package com.example.mvvmcleanarchitecture.features.characters.all.presentation
 
-import androidx.lifecycle.observe
 import com.example.mvvmcleanarchitecture.BR
 import com.example.mvvmcleanarchitecture.R
 import com.example.mvvmcleanarchitecture.core.base.BaseFragment
@@ -22,24 +21,9 @@ class CharacterFragment : BaseFragment<CharacterViewModel, FragmentCharacterBind
         initRecyclerView(binding)
     }
 
-    override fun initObservers() {
-        super.initObservers()
-        observeCharacters()
-    }
-
     private fun initRecyclerView(binding: FragmentCharacterBinding) {
         adapter.onCharacterListener = this@CharacterFragment
         binding.characterContainer.adapter = adapter
-    }
-
-    private fun observeCharacters() {
-        viewModel.characters.observe(this) {
-            showCharacters(it)
-        }
-    }
-
-    private fun showCharacters(characters: List<CharacterDisplayable>) {
-        adapter.setItems(characters)
     }
 
     override fun onClick(character: CharacterDisplayable) {

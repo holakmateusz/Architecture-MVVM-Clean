@@ -1,12 +1,15 @@
 package com.example.mvvmcleanarchitecture.core.base
 
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mvvmcleanarchitecture.core.adapter.BindableAdapter
 
-abstract class BaseAdapter<T> : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+abstract class BaseAdapter<T> :
+    BindableAdapter<T>,
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    protected abstract val items: MutableList<T>
+    protected val items by lazy { mutableListOf<T>() }
 
-    fun setItems(items: List<T>) {
+    override fun setItems(items: List<T>) {
         if (items.isEmpty()) {
             return
         }
