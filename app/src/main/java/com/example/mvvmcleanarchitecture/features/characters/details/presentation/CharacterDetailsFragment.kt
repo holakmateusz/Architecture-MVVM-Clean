@@ -1,9 +1,9 @@
 package com.example.mvvmcleanarchitecture.features.characters.details.presentation
 
 import android.os.Bundle
-import android.view.View
 import androidx.lifecycle.observe
 import com.bumptech.glide.Glide
+import com.example.mvvmcleanarchitecture.BR
 import com.example.mvvmcleanarchitecture.R
 import com.example.mvvmcleanarchitecture.core.base.BaseFragment
 import com.example.mvvmcleanarchitecture.databinding.FragmentCharacterDetailsBinding
@@ -12,17 +12,15 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CharacterDetailsFragment :
     BaseFragment<CharacterDetailsViewModel, FragmentCharacterDetailsBinding>
-        (R.layout.fragment_character_details) {
+        (
+        BR.viewModel,
+        R.layout.fragment_character_details
+    ) {
     override val viewModel: CharacterDetailsViewModel by viewModel()
     override var binding: FragmentCharacterDetailsBinding? = null
 
     companion object {
         internal const val CHARACTER_DETAILS_KEY = "characterDetailsKey"
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding = FragmentCharacterDetailsBinding.bind(view)
-        super.onViewCreated(view, savedInstanceState)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,11 +47,8 @@ class CharacterDetailsFragment :
             with(characterDetailsContainer) {
                 Glide.with(requireContext()).load(character.image)
                     .into(imageView)
-                characterName.text = character.name
-                val speciesWithStatusLabel = "${character.status} - ${character.species}"
-                characterSpecies.text = speciesWithStatusLabel
-                characterLocation.text = character.characterLocation.name
-                characterOrigin.text = character.origin.name
+                item = character
+                executePendingBindings()
             }
         }
     }

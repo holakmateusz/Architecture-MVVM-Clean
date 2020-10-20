@@ -1,84 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    style="@style/ParentWidthWrapHeight"
-    android:layout_margin="4dp"
-    app:cardCornerRadius="4dp"
-    app:cardElevation="6dp"
-    app:contentPadding="4dp">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout style="@style/ParentWidthWrapHeight">
+    <data>
+        <import type="com.example.mvvmcleanarchitecture.R" />
+        <variable
+            name="item"
+            type="com.example.mvvmcleanarchitecture.features.characters.all.presentation.model.CharacterDisplayable" />
+    </data>
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent=".5"
-            tools:src="@tools:sample/avatars" />
+    <com.google.android.material.card.MaterialCardView
+        style="@style/ParentWidthWrapHeight"
+        android:layout_margin="4dp"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="6dp"
+        app:contentPadding="4dp">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/characterName"
-            style="@style/DescriptionDefault"
-            android:layout_width="0dp"
-            android:paddingBottom="2dp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@id/imageView"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/imageView"
-            tools:text="Morty Smith" />
+        <androidx.constraintlayout.widget.ConstraintLayout style="@style/ParentWidthWrapHeight">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/characterSpecies"
-            style="@style/RemoteDescription"
-            android:paddingTop="5dp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/imageView"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Alive - Alien" />
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:imageUrl="@{item.image}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent=".5"
+                app:placeholder="@{R.drawable.ic_character_blank}"
+                tools:src="@tools:sample/avatars" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/characterLocationDescription"
-            style="@style/ConstantDescription"
-            android:paddingTop="5dp"
-            android:text="@string/character_location_description"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/imageView"
-            app:layout_constraintTop_toBottomOf="@id/characterSpecies" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/characterName"
+                style="@style/DescriptionDefault"
+                android:layout_width="0dp"
+                android:paddingBottom="2dp"
+                android:text="@{item.name}"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/imageView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imageView"
+                tools:text="Morty Smith" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/characterLocation"
-            style="@style/RemoteDescription"
-            android:layout_width="0dp"
-            android:paddingTop="5dp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/imageView"
-            app:layout_constraintTop_toBottomOf="@id/characterLocationDescription"
-            tools:text="Pluto" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/characterSpecies"
+                style="@style/RemoteDescription"
+                android:paddingTop="5dp"
+                android:text="@{item.speciesWithStatusLabel}"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/imageView"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Alive - Alien" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/characterOriginDescription"
-            style="@style/ConstantDescription"
-            android:paddingTop="5dp"
-            android:text="@string/character_origin_description"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/imageView"
-            app:layout_constraintTop_toBottomOf="@id/characterLocation" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/characterLocationDescription"
+                style="@style/ConstantDescription"
+                android:paddingTop="5dp"
+                android:text="@string/character_location_description"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/imageView"
+                app:layout_constraintTop_toBottomOf="@id/characterSpecies" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/characterOrigin"
-            style="@style/RemoteDescription"
-            android:layout_width="0dp"
-            android:paddingHorizontal="2dp"
-            android:paddingTop="5dp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/imageView"
-            app:layout_constraintTop_toBottomOf="@id/characterOriginDescription"
-            tools:text="Auto Erotic Assimilation" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</com.google.android.material.card.MaterialCardView>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/characterLocation"
+                style="@style/RemoteDescription"
+                android:layout_width="0dp"
+                android:paddingTop="5dp"
+                android:text="@{item.characterLocation.name}"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/imageView"
+                app:layout_constraintTop_toBottomOf="@id/characterLocationDescription"
+                tools:text="Pluto" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/characterOriginDescription"
+                style="@style/ConstantDescription"
+                android:paddingTop="5dp"
+                android:text="@string/character_origin_description"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/imageView"
+                app:layout_constraintTop_toBottomOf="@id/characterLocation" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/characterOrigin"
+                style="@style/RemoteDescription"
+                android:layout_width="0dp"
+                android:paddingHorizontal="2dp"
+                android:paddingTop="5dp"
+                android:text="@{item.origin.name}"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/imageView"
+                app:layout_constraintTop_toBottomOf="@id/characterOriginDescription"
+                tools:text="Auto Erotic Assimilation" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

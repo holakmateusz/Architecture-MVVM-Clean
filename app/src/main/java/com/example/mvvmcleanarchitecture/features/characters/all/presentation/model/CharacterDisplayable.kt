@@ -2,6 +2,7 @@ package com.example.mvvmcleanarchitecture.features.characters.all.presentation.m
 
 import android.os.Parcelable
 import com.example.mvvmcleanarchitecture.features.characters.domain.model.Character
+import kotlinx.android.parcel.IgnoredOnParcel
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
@@ -31,6 +32,9 @@ data class CharacterDisplayable(
         type = character.type,
         url = character.url
     )
+
+    @IgnoredOnParcel
+    val speciesWithStatusLabel = "$status - $species"
 
     companion object
 }

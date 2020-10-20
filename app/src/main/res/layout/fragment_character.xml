@@ -1,20 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/rootContainer"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.mvvmcleanarchitecture.features.characters.all.presentation.CharacterFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/characterContainer"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_character" />
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.mvvmcleanarchitecture.features.characters.all.presentation.CharacterViewModel" />
+    </data>
 
-    <include
-        android:id="@+id/progressBarContainer"
-        layout="@layout/progress_bar" />
-</FrameLayout>
+    <FrameLayout
+        android:id="@+id/rootContainer"
+        style="@style/ParentWidthParentHeight"
+        tools:context="com.example.mvvmcleanarchitecture.features.characters.all.presentation.CharacterFragment">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/characterContainer"
+            style="@style/ParentWidthParentHeight"
+            app:items="@{viewModel.characters}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_character" />
+
+        <include
+            android:id="@+id/progressBarContainer"
+            layout="@layout/progress_bar"
+            app:viewModel="@{viewModel}" />
+    </FrameLayout>
+</layout>

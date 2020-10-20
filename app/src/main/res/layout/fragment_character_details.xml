@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/ParentWidthParentHeight">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <include
-        android:id="@+id/characterDetailsContainer"
-        layout="@layout/item_character" />
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.mvvmcleanarchitecture.features.characters.details.presentation.CharacterDetailsViewModel" />
+    </data>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout style="@style/ParentWidthParentHeight">
+
+        <include
+            android:id="@+id/characterDetailsContainer"
+            layout="@layout/item_character" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
