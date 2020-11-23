@@ -7,6 +7,7 @@ import com.example.mvvmcleanarchitecture.features.characters.all.presentation.mo
 import com.example.mvvmcleanarchitecture.features.characters.domain.GetCharactersUseCase
 import com.example.mvvmcleanarchitecture.features.characters.domain.model.Character
 import com.example.mvvmcleanarchitecture.features.characters.navigation.CharacterNavigator
+import kotlinx.coroutines.flow.MutableStateFlow
 
 class CharacterViewModel(
     private val getCharactersUseCase: GetCharactersUseCase,
@@ -16,25 +17,25 @@ class CharacterViewModel(
     DefaultLifecycleObserver {
 
     private val _characters by lazy {
-        MutableLiveData<List<Character>>().also {
+        MutableStateFlow<List<Character>>(emptyList()).also {
             getCharacters(it)
         }
     }
 
     val characters: LiveData<List<CharacterDisplayable>> by lazy {
-        _characters.map { characters ->
+        _characters.asLiveData().map { characters ->
             characters.map { CharacterDisplayable(it) }
         }
     }
 
-    private fun getCharacters(charactersLiveData: MutableLiveData<List<Character>>) {
+    private fun getCharacters(charactersMutableStateFlow: MutableStateFlow<List<Character>>) {
         setPendingState()
         getCharactersUseCase(
             params = Unit,
             scope = viewModelScope
         ) { result ->
             setIdleState()
-            result.onSuccess { charactersLiveData.value = it }
+            result.onSuccess { charactersMutableStateFlow.value = it }
             result.onFailure { handleFailure(it) }
         }
     }
