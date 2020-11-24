@@ -17,6 +17,8 @@ import com.example.mvvmcleanarchitecture.utils.observeForTesting
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.test.setMain
 import org.amshove.kluent.shouldBe
 import org.junit.jupiter.api.Test
 
@@ -58,6 +60,7 @@ internal class CharacterViewModelTest : ViewModelTest() {
     @Test
     fun `When character live data is observed THEN invoke use case to get characters`() {
         //given
+        Dispatchers.setMain(Dispatchers.Unconfined)
         val useCase = mockk<GetCharactersUseCase>(relaxed = true)
         val errorMapper = mockk<ErrorMapper>(relaxed = true)
         val fragmentNavigator = mockk<FragmentNavigator>(relaxed = true)
@@ -73,6 +76,7 @@ internal class CharacterViewModelTest : ViewModelTest() {
 
     @Test
     fun `GIVEN use case result is success WHEN character live data is observed THEN set idle state AND set result in live data`() {
+        Dispatchers.setMain(Dispatchers.Unconfined)
         //given
         val characters = listOf(Character.mock(), Character.mock(), Character.mock())
         val useCase = mockk<GetCharactersUseCase> {
